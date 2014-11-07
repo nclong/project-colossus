@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PugilistJump : MonoBehaviour, IAbility {
 
+    [Range(1.0f, 4.0f)]
+    public int m_controller;
     public float m_startupTime;
     public float m_activeTime;
     public float m_cooldownTime;
@@ -11,7 +13,7 @@ public class PugilistJump : MonoBehaviour, IAbility {
 
     private float activeTimer;
     private AbilityTimer timer;
-    public AbilityState state { get; private set; }
+    public AbilityState state { get; set; }
     private Vector3 target;
     private Vector3 start;
     private Vector3 startScale;
@@ -22,6 +24,7 @@ public class PugilistJump : MonoBehaviour, IAbility {
         timer = new AbilityTimer( m_startupTime, m_activeTime, m_cooldownTime );
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
         startScale = transform.localScale;
+        state = AbilityState.Inactive;
 	}
 	
 	// Update is called once per frame
@@ -34,16 +37,21 @@ public class PugilistJump : MonoBehaviour, IAbility {
                 break;
             case AbilityState.Active:
                 activeTimer += Time.deltaTime;
-                transform.position = Vector3.Lerp( start, target, activeTimer / m_activeTime );
-                transform.localScale = Vector3.Lerp( startScale, targetScale, -Mathf.Abs((activeTimer - m_activeTime /2) / (m_activeTime /2)) + 1);
+                if( activeTimer < m_activeTime )
+                {
+                    transform.position = Vector3.Lerp( start, target, activeTimer / m_activeTime );
+                    transform.localScale = Vector3.Lerp( startScale, targetScale, -Mathf.Abs( ( activeTimer - m_activeTime / 2 ) / ( m_activeTime / 2 ) ) + 1 ); 
+                }
                 break;
             case AbilityState.Cooldown:
                 break;
             default:
-                AbilityEnd();
                 break;
         }
-
+        if( timer.IsOver )
+        {
+            AbilityEnd();
+        }
 
 	}
 
@@ -56,14 +64,16 @@ public class PugilistJump : MonoBehaviour, IAbility {
         targetScale = transform.localScale * 1.5f;
         activeTimer = 0.0f;
         timer.Start();
-
     }
 
     public void AbilityEnd()
     {
-        Debug.Log( "Jump Ended" );
+        Debug.Log( state.ToString() );
         transform.localScale = startScale;
-        characterMovement.EndAbilities();
-        state = AbilityState.Inactive;
+        if( !characterMovement.GetAbilityInput( m_controller ) )
+        {            
+            characterMovement.EndAbilities();
+            state = AbilityState.Inactive; 
+        }
     }
 }

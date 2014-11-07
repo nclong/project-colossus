@@ -35,11 +35,6 @@ public class AbilityTimer {
             {
                 State = AbilityState.Cooldown;
             }
-
-            if( currentTimer >= timerMax )
-            {
-                State = AbilityState.Inactive;
-            } 
         }
 	}
 
@@ -47,6 +42,11 @@ public class AbilityTimer {
     {
         State = AbilityState.Startup;
         currentTimer = 0.0f;
+    }
+
+    public bool IsOver
+    {
+        get { return currentTimer >= timerMax; }
     }
 
 }

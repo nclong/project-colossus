@@ -31,7 +31,7 @@ public class CharacterAnimationCollector : MonoBehaviour {
                 animator.SetInteger( "RotationMovement", 1 );
                 break;
             default:
-                animator.SetInteger( "Rotationmovement", 0 );
+                animator.SetInteger( "RotationMovement", 0 );
                 break;
         }
 	    
