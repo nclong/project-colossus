@@ -5,6 +5,7 @@ public class PugilistJump : MonoBehaviour, IAbility {
 
     [Range(1.0f, 4.0f)]
     public int m_controller;
+    public Button m_button;
     public float m_startupTime;
     public float m_activeTime;
     public float m_cooldownTime;
@@ -19,12 +20,14 @@ public class PugilistJump : MonoBehaviour, IAbility {
     private Vector3 startScale;
     private Vector3 targetScale;
     private CharacterMovement characterMovement;
+    private int button;
 	// Use this for initialization
 	void Start () {
         timer = new AbilityTimer( m_startupTime, m_activeTime, m_cooldownTime );
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
         startScale = transform.localScale;
         state = AbilityState.Inactive;
+        button = (int)m_button;
 	}
 	
 	// Update is called once per frame
@@ -54,6 +57,11 @@ public class PugilistJump : MonoBehaviour, IAbility {
         }
 
 	}
+
+    public int GetButton()
+    {
+        return button;
+    }
 
     public void AbilityStart()
     {

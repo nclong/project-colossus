@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\Constants.cs" />
     <Compile Include="Assets\Scripts\CursorManager.cs" />
     <Compile Include="Assets\Scripts\Enums\AbilityState.cs" />
+    <Compile Include="Assets\Scripts\Enums\Button.cs" />
     <Compile Include="Assets\Scripts\Enums\CharacterState.cs" />
     <Compile Include="Assets\Scripts\Enums\SpriteRotationState.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAbility.cs" />

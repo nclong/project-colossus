@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 public class CharacterMovement : MonoBehaviour {
@@ -46,22 +47,36 @@ public class CharacterMovement : MonoBehaviour {
     private string ability2Str;
     private string ability3Str;
     private string ability4Str;
-    private IAbility jump;
-
-    //NOT A FINAL SOLUTION AT ALL
-    private bool jumpStarted = false;
-    private bool jumpFinished = true;
+    private IAbility[] abilities;
 
 	// Use this for initialization
 	void Start () {
+        abilities = new IAbility[4];
         m_characterName = m_characterName.ToLower();
-        jump = (IAbility)GetComponent<PugilistJump>();
+        List<MonoBehaviour> behaviourList = new List<MonoBehaviour>();
+        GetComponents<MonoBehaviour>(behaviourList);
+        List<IAbility> abilityList = new List<IAbility>();
+        foreach( MonoBehaviour behaviour in behaviourList )
+        {
+            if( behaviour is IAbility)
+            {
+                abilityList.Add( (IAbility)behaviour );
+            }
+        }
+
+        foreach( IAbility ability in abilityList)
+        {
+            abilities[ability.GetButton()] = ability;
+        }
 
         leftJoystickXStr = "LeftJoystickX" + m_controller.ToString();
         leftJoystickYStr = "LeftJoystickY" + m_controller.ToString();
         rightJoystickXStr = "RightJoystickX" + m_controller.ToString();
         rightJoystickYStr = "RightJoystickY" + m_controller.ToString();
         ability1Str = "AbilityA" + m_controller.ToString();
+        ability2Str = string.Empty;
+        ability3Str = string.Empty;
+        ability4Str = string.Empty;
 	}
 	
 	// Update is called once per frame
@@ -72,14 +87,14 @@ public class CharacterMovement : MonoBehaviour {
         leftJoystickY = Input.GetAxis( leftJoystickYStr );
         rightJoystickX = Input.GetAxis( rightJoystickXStr );
         rightJoystickY = Input.GetAxis( rightJoystickYStr );
-        bool jumpInput = Input.GetButton( ability1Str );
+        bool ability1Inp = Input.GetButton( ability1Str );
 
         //Set states from inputs
         if( !leftJoystickIsNull || !rightJoystickIsNull )
         {
             State |= (uint)CharacterState.Moving;
         }
-        if( jumpInput && ( jump.state == AbilityState.Inactive || jump.state == AbilityState.Null) )
+        if( ability1Inp && ( abilities[0].state == AbilityState.Inactive || abilities[0].state == AbilityState.Null ) )
         {
             State |= (uint)CharacterState.Ability1;
         }
@@ -89,9 +104,9 @@ public class CharacterMovement : MonoBehaviour {
         //To process effects
         if( ( State & (uint)CharacterState.Ability1 ) == (uint)CharacterState.Ability1 )
         {
-            if( jump.state == AbilityState.Inactive || jump.state == AbilityState.Null )
+            if( abilities[0].state == AbilityState.Inactive || abilities[0].state == AbilityState.Null )
             {
-                jump.AbilityStart(); 
+                abilities[0].AbilityStart(); 
             }
         }
         else if( ( State & (uint)CharacterState.Ability2 ) == (uint)CharacterState.Ability2 )
