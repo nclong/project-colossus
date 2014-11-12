@@ -24,7 +24,7 @@ public class CursorManager : MonoBehaviour {
 
         //Real hacky solution for now
         cursorDistance = 0.3f + Mathf.Pow(angleInput.Sin, 8) * 0.7f;
-        if( !angleInput.FromInput )
+        if( angleInput.FromInput )
         {
             transform.localPosition = new Vector3( 0.35f * angleInput.Cos, transform.localPosition.y, angleInput.Sin ); 
         }

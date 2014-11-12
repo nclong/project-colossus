@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PugilistJump : MonoBehaviour, IAbility {
 
-    [Range(1.0f, 4.0f)]
+    [Range(0.0f, 3.0f)]
     public int m_controller;
     public Button m_button;
     public float m_startupTime;
@@ -19,15 +19,19 @@ public class PugilistJump : MonoBehaviour, IAbility {
     private Vector3 start;
     private Vector3 startScale;
     private Vector3 targetScale;
+    private CharacterStateController stateController;
     private CharacterMovement characterMovement;
+    private PlayerInput playerInput;
     private int button;
 	// Use this for initialization
 	void Start () {
         timer = new AbilityTimer( m_startupTime, m_activeTime, m_cooldownTime );
+        stateController = (CharacterStateController)GetComponent<CharacterStateController>();
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
         startScale = transform.localScale;
         state = AbilityState.Inactive;
         button = (int)m_button;
+        playerInput = InputManager.Players[m_controller];
 	}
 	
 	// Update is called once per frame
@@ -76,11 +80,10 @@ public class PugilistJump : MonoBehaviour, IAbility {
 
     public void AbilityEnd()
     {
-        Debug.Log( state.ToString() );
         transform.localScale = startScale;
-        if( !characterMovement.GetAbilityInput( m_controller ) )
+        if( !playerInput.Abilities[button] )
         {            
-            characterMovement.EndAbilities();
+            stateController.EndAbilities();
             state = AbilityState.Inactive; 
         }
     }
