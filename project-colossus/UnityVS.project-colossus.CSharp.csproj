@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Interfaces\IAbility.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PugilistJump.cs" />
+    <Compile Include="Assets\Scripts\PugilistShield.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
