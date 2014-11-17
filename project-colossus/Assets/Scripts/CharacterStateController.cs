@@ -34,7 +34,7 @@ public class CharacterStateController : MonoBehaviour {
         }
 
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
