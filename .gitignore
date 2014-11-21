@@ -1,0 +1,16 @@
+*.exe
+*.dll
+*.suo
+*.csproj
+*.asset
+*.db
+*.prefs
+*.dwlt
+*/guidmapper
+../metadata/*
+*.sln
+../Temp/*
+*.cache
+*.xml
+*.mdb
+*.txt
