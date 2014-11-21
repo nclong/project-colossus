@@ -35,7 +35,7 @@ public class CharacterStateController : MonoBehaviour {
         }
 
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
-        attribtues = (CharacterAttributes)GetComponent<CharacterAttributes>();
+        attributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
     }
 	
 	// Update is called once per frame
@@ -61,7 +61,7 @@ public class CharacterStateController : MonoBehaviour {
             AddState( CharacterState.Ability4 );
         }
 
-        if( attribtues.CurrentHealth <= 0 )
+        if( attributes.CurrentHealth <= 0 )
         {
             AddState( CharacterState.KnockedOut );
             attributes.SetHealth( 0 );
