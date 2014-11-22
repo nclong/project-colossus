@@ -22,7 +22,10 @@ public class CharacterAttributes : MonoBehaviour {
 
 	public void ModifyHealth( int offset )
 	{
-		CurrentHealth += offset;
+		if(CurrentHealth + offset >= MaxHealth)
+			CurrentHealth = MaxHealth;
+		else
+			CurrentHealth += offset;
 	}
 
 	public void SetResource( int newResource )
@@ -32,6 +35,9 @@ public class CharacterAttributes : MonoBehaviour {
 
 	public void ModifyResource( int offset )
 	{
-		CurrentResource += offset;
+		if(CurrenResource + offset >= MaxResource)
+			CurrentResource = MaxResource
+		else
+			CurrentResource += offset;
 	}
 }
