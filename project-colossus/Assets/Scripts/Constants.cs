@@ -7,4 +7,12 @@ public static class Constants {
     {
         return Mathf.Abs( Mathf.Abs( x ) - target ) <= epsilon;
     }
+
+    public static Vector3 XZDistorition 
+    {
+    	get 
+    	{
+    		return new Vector3( 1.0f, 0.0f, 1.0f);
+    	}
+    }
 }
