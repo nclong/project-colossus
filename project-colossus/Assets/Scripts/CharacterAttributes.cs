@@ -35,8 +35,8 @@ public class CharacterAttributes : MonoBehaviour {
 
 	public void ModifyResource( int offset )
 	{
-		if(CurrenResource + offset >= MaxResource)
-			CurrentResource = MaxResource
+		if(CurrentResource + offset >= MaxResource)
+			CurrentResource = MaxResource;
 		else
 			CurrentResource += offset;
 	}
