@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAbility.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\PugilistAttack.cs" />
     <Compile Include="Assets\Scripts\PugilistJump.cs" />
     <Compile Include="Assets\Scripts\PugilistShield.cs" />
   </ItemGroup>
