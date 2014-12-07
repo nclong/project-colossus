@@ -28,13 +28,20 @@ public class CharacterMovement : MonoBehaviour {
         playerInput = InputManager.Players[m_controller];
         stateController = (CharacterStateController)GetComponent<CharacterStateController>();
 	}
+
+    void FixedUpdate()
+    {
+        rigidbody.velocity = new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY ) * m_movementSpeed;
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if( Moveable )
         {
-            Vector3 movementInput = new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY );
-            transform.position = Vector3.Lerp( transform.position, ( transform.position + movementInput * m_movementSpeed ), Time.deltaTime );
+            //Vector3 movementInput = new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY );
+            //transform.position = Vector3.Lerp( transform.position, ( transform.position + movementInput * m_movementSpeed ), Time.deltaTime );
+            //rigidbody.AddForce( new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY ) * m_movementSpeed * Time.deltaTime, ForceMode.VelocityChange );
+            rigidbody.velocity = new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY ) * m_movementSpeed;
         }
         if( Rotatable && !playerInput.RightJoystickIsNull )
         {
