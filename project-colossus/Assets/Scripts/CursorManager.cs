@@ -21,12 +21,9 @@ public class CursorManager : MonoBehaviour {
         AngleInput angleInput = parentMovementComponent.GetRotationInput();
         xInput = angleInput.Cos;
         yInput = angleInput.Sin;
-
-        //Real hacky solution for now
-        cursorDistance = 0.3f + Mathf.Pow(angleInput.Sin, 8) * 0.7f;
         if( angleInput.FromInput )
         {
-            transform.localPosition = new Vector3( 0.35f * angleInput.Cos, transform.localPosition.y, angleInput.Sin ); 
+            transform.localPosition = new Vector3( angleInput.Cos, transform.localPosition.y, angleInput.Sin ).PerspectiveAdjusted() * cursorDistance; 
         }
 	}
 }

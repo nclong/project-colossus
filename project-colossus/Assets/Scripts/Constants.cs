@@ -15,4 +15,10 @@ public static class Constants {
     		return new Vector3( 1.0f, 0.0f, 1.0f);
     	}
     }
+
+    public static Vector3 PerspectiveAdjusted( this Vector3 u )
+    {
+        float distortion = ( 1 / Mathf.Tan(Camera.main.transform.eulerAngles.x * Mathf.Deg2Rad ) ) ;
+        return new Vector3( u.x, u.y, u.z * distortion );
+    }
 }

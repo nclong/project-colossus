@@ -31,7 +31,7 @@ public class CharacterMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
-        rigidbody.velocity = new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY ) * m_movementSpeed;
+        rigidbody.velocity = new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY ).PerspectiveAdjusted() * m_movementSpeed;
     }
 	
 	// Update is called once per frame

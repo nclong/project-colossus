@@ -21,6 +21,7 @@ public class PugilistJump : MonoBehaviour, IAbility {
     private Vector3 targetScale;
     private CharacterStateController stateController;
     private CharacterMovement characterMovement;
+    private CharacterAttributes characterAttributes;
     private PlayerInput playerInput;
     private int button;
 	// Use this for initialization
@@ -28,7 +29,6 @@ public class PugilistJump : MonoBehaviour, IAbility {
         timer = new AbilityTimer( m_startupTime, m_activeTime, m_cooldownTime );
         stateController = (CharacterStateController)GetComponent<CharacterStateController>();
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
-        startScale = transform.localScale;
         state = AbilityState.Inactive;
         button = (int)m_button;
         playerInput = InputManager.Players[m_controller];
