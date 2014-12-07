@@ -10,6 +10,7 @@ public class CharacterStateController : MonoBehaviour {
     private PlayerInput playerInput;
     private CharacterMovement characterMovement;
     private IAbility[] abilities;
+    private CharacterAttributes attributes;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,7 @@ public class CharacterStateController : MonoBehaviour {
         }
 
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
+        attributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
     }
 	
 	// Update is called once per frame
@@ -58,6 +60,14 @@ public class CharacterStateController : MonoBehaviour {
         {
             AddState( CharacterState.Ability4 );
         }
+
+        if( attributes.CurrentHealth <= 0 )
+        {
+            AddState( CharacterState.KnockedOut );
+            attributes.SetHealth( 0 );
+        }
+
+
         /* NOT YET IMPLIMENTED
          * if( playerInput.PrimaryAbility > 0.025f ) { AddState( CharacterState.Primary ); }
          * if( playerInput.SecondaryAbility > 0.025f ) { AddState( CharacterState.Secondary ); }

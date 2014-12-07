@@ -12,4 +12,5 @@ public enum CharacterState : uint {
     Ability3 = 64,
     Ability4 = 128,
     TakingDamage = 256,
+    KnockedOut = 512
 }
