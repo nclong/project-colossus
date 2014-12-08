@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CharacterAttributes : MonoBehaviour {
@@ -6,14 +7,24 @@ public class CharacterAttributes : MonoBehaviour {
 	public int MaxHealth;
 	public int MaxResource;
 	public int Defense;
-
+    public Text healthLabel;
+    public Text resourceLabel;
 	public int CurrentHealth { get; private set; }
 	public int CurrentResource { get; private set; }
 
 	void Start()
 	{
 		CurrentHealth = MaxHealth;
+        CurrentResource = MaxResource;
+        healthLabel.text = "Health: " + CurrentHealth.ToString() + " / " + MaxHealth.ToString();
+        resourceLabel.text = "Mana: " + CurrentResource.ToString() + " / " + MaxResource.ToString();
 	}
+
+    void Update()
+    {
+        healthLabel.text = "Health: " + CurrentHealth.ToString() + " / " + MaxHealth.ToString();
+        resourceLabel.text = "Mana: " + CurrentResource.ToString() + " / " + MaxResource.ToString();
+    }
 
 	public void SetHealth( int newHealth )
 	{

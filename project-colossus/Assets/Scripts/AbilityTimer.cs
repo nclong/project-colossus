@@ -48,5 +48,4 @@ public class AbilityTimer {
     {
         get { return currentTimer >= timerMax; }
     }
-
 }

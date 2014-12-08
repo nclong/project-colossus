@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class CharacterStateController : MonoBehaviour {
 
+    public string characterClass;
     public uint State;
     public int m_controller;
 
     private PlayerInput playerInput;
     private CharacterMovement characterMovement;
     private IAbility[] abilities;
+    private SecondaryAbility secondaryAbility;
+    private PrimaryAbility primaryAbility;
     private CharacterAttributes attributes;
 
 	// Use this for initialization
 	void Start () {
         playerInput = InputManager.Players[m_controller];
-
         //Get All Abilities on the Character Object
         abilities = new IAbility[4];
         List<MonoBehaviour> behaviourList = new List<MonoBehaviour>();
@@ -36,6 +39,8 @@ public class CharacterStateController : MonoBehaviour {
 
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
         attributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
+        secondaryAbility = (SecondaryAbility)GetComponent<SecondaryAbility>();
+        primaryAbility = (PrimaryAbility)GetComponent<PrimaryAbility>();
     }
 	
 	// Update is called once per frame
@@ -60,6 +65,14 @@ public class CharacterStateController : MonoBehaviour {
         {
             AddState( CharacterState.Ability4 );
         }
+        if( playerInput.SecondaryAbility.IsGreaterThanPlusEpsilon( 0.0f, InputManager.GeneralEpsilon ) )
+        {
+            AddState( CharacterState.Secondary );
+        }
+        if( playerInput.PrimaryAbility.IsGreaterThanPlusEpsilon( 0.0f, InputManager.GeneralEpsilon ))
+        {
+            AddState( CharacterState.Primary );
+        }
 
         if( attributes.CurrentHealth <= 0 )
         {
@@ -82,7 +95,10 @@ public class CharacterStateController : MonoBehaviour {
         }
         else if( HasState(CharacterState.Ability2))
         {
-
+            if( abilities[1].state == AbilityState.Inactive || abilities[1].state == AbilityState.Null )
+            {
+                abilities[1].AbilityStart();
+            }
         }
         else if( HasState(CharacterState.Ability3))
         {
@@ -94,11 +110,17 @@ public class CharacterStateController : MonoBehaviour {
         }
         else if( HasState(CharacterState.Primary))
         {
-
+            if( primaryAbility.state == AbilityState.Inactive || primaryAbility.state == AbilityState.Null )
+            {
+                primaryAbility.AbilityStart();
+            }
         }
         else if( HasState(CharacterState.Secondary))
         {
-
+            if( secondaryAbility.state == AbilityState.Inactive || secondaryAbility.state == AbilityState.Null )
+            {
+                secondaryAbility.AbilityStart();
+            }
         }
         else if( HasState(CharacterState.Moving) || HasState(CharacterState.Rotating))
         {

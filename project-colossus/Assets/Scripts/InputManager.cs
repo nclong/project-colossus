@@ -4,6 +4,7 @@ using System.Collections;
 public class InputManager : MonoBehaviour {
 
     public static PlayerInput[] Players = new PlayerInput[4];
+    public static float GeneralEpsilon = 0.01f;
 	// Use this for initialization
 	void Start () {
         for( int i = 0; i < Players.Length; ++i )
@@ -25,7 +26,8 @@ public class InputManager : MonoBehaviour {
             Players[0].Abilities[1] = Input.GetButton( "AbilityX" + i.ToString() );
             Players[0].Abilities[2] = Input.GetButton( "AbilityB" + i.ToString() );
             Players[0].Abilities[3] = Input.GetButton( "AbilityY" + i.ToString() );
-            //Still Need to Add Trigger Abilities
+            Players[0].PrimaryAbility = Input.GetAxis( "Primary" + i.ToString() );
+            Players[0].SecondaryAbility = Input.GetAxis( "Secondary" + i.ToString() );
         }
 	}
 }
