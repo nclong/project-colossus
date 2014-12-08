@@ -45,7 +45,7 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
                 ThaumaturgePlaceRuneCircle.PlaceRune( runeObject, this );
                 characterAttributes.ModifyResource( -placementCost );
             }
-            else
+            if( runePlaced )
             {
                 if( inRune )
                 {
@@ -67,9 +67,12 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
                             tickTimer += Time.deltaTime;
                             if( tickTimer >= tickLength )
                             {
-                                characterAttributes.ModifyResource( -1 );
-                                rune.AddCharge( 1 );
-                                tickTimer = tickLength - tickTimer;
+                                if( characterAttributes.CurrentResource >= 1 )
+                                {
+                                    characterAttributes.ModifyResource( -1 );
+                                    rune.AddCharge( 1 );
+                                    tickTimer = tickLength - tickTimer;
+                                }
                             }
                         }
                     }
