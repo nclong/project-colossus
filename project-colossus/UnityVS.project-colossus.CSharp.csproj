@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ElectricianShot.cs" />
+    <Compile Include="Assets\ImpulseTest.cs" />
     <Compile Include="Assets\Scripts\AbilityTimer.cs" />
     <Compile Include="Assets\Scripts\AngleInput.cs" />
     <Compile Include="Assets\Scripts\Apothecary\ApothecaryDrink.cs" />
@@ -77,10 +78,14 @@
     <Compile Include="Assets\Scripts\Interfaces\IAbility.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PrimaryAbility.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistAttack.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistAttackCollision.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistCharge.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistJump.cs" />
+    <Compile Include="Assets\Scripts\Pugilist\PugilistPush.cs" />
+    <Compile Include="Assets\Scripts\Pugilist\PugilistPushCollision.cs" />
+    <Compile Include="Assets\Scripts\Pugilist\PugilistReflect.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistShield.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistShieldCollision.cs" />
     <Compile Include="Assets\Scripts\SecondaryAbility.cs" />

@@ -35,10 +35,6 @@ public class CharacterMovement : MonoBehaviour {
         {
             rigidbody.velocity = new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY ).PerspectiveAdjusted() * m_movementSpeed; 
         }
-        else
-        {
-            rigidbody.velocity = Vector3.zero;
-        }
     }
 	
 	// Update is called once per frame

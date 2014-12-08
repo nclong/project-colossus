@@ -43,7 +43,7 @@ public class PugilistAttack : PrimaryAbility {
                     startedUpdated = true;
                     characterMovement.Moveable = false;
                     characterMovement.Rotatable = false;
-                    parentAttackObject.transform.localPosition = new Vector3( angle.Cos, transform.localPosition.y, angle.Sin ).PerspectiveAdjusted() * offset;
+                    parentAttackObject.transform.localPosition = new Vector3( angle.Cos, parentAttackObject.transform.localPosition.y, angle.Sin ).PerspectiveAdjusted() * offset;
                     parentAttackObject.transform.localScale = new Vector3( radius, radius, radius );
                 }
                 break;

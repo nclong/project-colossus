@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PugilistShield : MonoBehaviour, IAbility {
     [Range( 0.0f, 3.0f )]
     public int m_controller;
-    public Button m_button;
     public float m_startupTime;
     public float m_activeTime;
     public float m_cooldownTime;
@@ -19,7 +19,6 @@ public class PugilistShield : MonoBehaviour, IAbility {
     private CharacterAttributes characterAttributes;
     private PlayerInput playerInput;
     public int button;
-    private int integerSeconds = 0;
     private float tickLength;
     private float tickTimer;
 
@@ -30,7 +29,6 @@ public class PugilistShield : MonoBehaviour, IAbility {
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
         characterAttributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
         state = AbilityState.Inactive;
-        //button = (int)m_button;
         playerInput = InputManager.Players[m_controller];
 
         tickLength = 1f / (float)cost;
@@ -74,13 +72,13 @@ public class PugilistShield : MonoBehaviour, IAbility {
         state = AbilityState.Active;
         characterMovement.Moveable = false;
         shieldObject.SetActive( true );
+        rigidbody.velocity = Vector3.zero;
     }
 
     public void AbilityEnd()
     {
         if( !playerInput.Abilities[button] )
         {
-
             stateController.EndAbilities();
             state = AbilityState.Inactive;
             characterMovement.Moveable = true;

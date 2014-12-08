@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum Button {
+public enum Button : int {
     A = 0,
     X = 1,
     B = 2,

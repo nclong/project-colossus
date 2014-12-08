@@ -102,11 +102,17 @@ public class CharacterStateController : MonoBehaviour {
         }
         else if( HasState(CharacterState.Ability3))
         {
-
+            if( abilities[2].state == AbilityState.Inactive || abilities[2].state == AbilityState.Null )
+            {
+                abilities[2].AbilityStart();
+            }
         }
         else if( HasState(CharacterState.Ability4))
         {
-
+            if( abilities[3].state == AbilityState.Inactive || abilities[3].state == AbilityState.Null )
+            {
+                abilities[3].AbilityStart();
+            }
         }
         else if( HasState(CharacterState.Primary))
         {
