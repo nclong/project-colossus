@@ -119,16 +119,4 @@ public class PugilistReflect : MonoBehaviour, IAbility
             state = AbilityState.Inactive;
         }
     }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-        if( state == AbilityState.Active )
-        {
-            Projectile proj = (Projectile)collision.gameObject.GetComponent<Projectile>();
-            if( proj != null )
-            {
-                collision.gameObject.rigidbody.velocity *= -2;
-            } 
-        }
-    }
 }

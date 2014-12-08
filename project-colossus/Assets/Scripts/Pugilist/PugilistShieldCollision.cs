@@ -37,7 +37,7 @@ public class PugilistShieldCollision : MonoBehaviour {
 
             if( collisionObject.tag == "Projectile" )
             {
-                characterAttributes.ModifyHealth( -hitCost );
+                characterAttributes.ModifyResource( -hitCost );
                 Destroy( collisionObject );
             }
         }

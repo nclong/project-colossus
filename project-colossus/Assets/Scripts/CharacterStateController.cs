@@ -143,10 +143,44 @@ public class CharacterStateController : MonoBehaviour {
 
     public void OnTriggerEnter(Collider collider)
     {
-        HarmfulHitbox hitbox = collider.gameObject.GetComponent<HarmfulHitbox>();
-        if( hitbox != null )
+        bool reflect;
+        PugilistReflect possibleReflect;
+        try
         {
-            attributes.ModifyHealth( -hitbox.damage );
+            possibleReflect = (PugilistReflect)abilities[2];
+        }
+        catch( InvalidCastException )
+        {
+            possibleReflect = null;
+        }
+
+        reflect = possibleReflect != null 
+            ? possibleReflect.state == AbilityState.Active 
+            : false;
+
+        if( reflect )
+        {
+            Projectile proj = (Projectile)collider.gameObject.GetComponent<Projectile>();
+            if( proj != null )
+            {
+                HarmfulHitbox oldBox = (HarmfulHitbox)collider.gameObject.GetComponent<HarmfulHitbox>();
+                ReflectedHitbox newBox = (ReflectedHitbox)collider.gameObject.AddComponent<ReflectedHitbox>();
+                newBox.damage = oldBox.damage * 2;
+                oldBox.enabled = false;
+                collider.gameObject.rigidbody.velocity *= -2;
+            } 
+        }
+        else
+        {
+            HarmfulHitbox hitbox = collider.gameObject.GetComponent<HarmfulHitbox>();
+            if( hitbox != null )
+            {
+                attributes.ModifyHealth( -hitbox.damage );
+                if( collider.gameObject.tag == "Projectile" )
+                {
+                    Destroy( collider.gameObject );
+                }
+            } 
         }
     }
 

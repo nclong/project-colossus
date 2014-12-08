@@ -75,4 +75,18 @@ public class EnemyAttributes : MonoBehaviour {
 
         return goMax;
     }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        ReflectedHitbox hitbox = (ReflectedHitbox)collider.gameObject.GetComponent<ReflectedHitbox>();
+        if( hitbox != null )
+        {
+            CurrentHealth -= hitbox.damage;
+            
+            if( collider.gameObject.tag == "Projectile")
+            {
+                Destroy( collider.gameObject );
+            }
+        }
+    }
 }

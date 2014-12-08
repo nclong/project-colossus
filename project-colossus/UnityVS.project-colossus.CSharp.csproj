@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Apothecary\ApothecaryDrink.cs" />
     <Compile Include="Assets\Scripts\Boss\Death\DeathAttackManager.cs" />
     <Compile Include="Assets\Scripts\Boss\Death\DeathFullSwing.cs" />
+    <Compile Include="Assets\Scripts\Boss\Death\DeathProjectile.cs" />
     <Compile Include="Assets\Scripts\Boss\EnemyAttackController.cs" />
     <Compile Include="Assets\Scripts\Boss\EnemyAttributes.cs" />
     <Compile Include="Assets\Scripts\Boss\EnemyMovement.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Assets\Scripts\Pugilist\PugilistReflect.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistShield.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistShieldCollision.cs" />
+    <Compile Include="Assets\Scripts\ReflectedHitbox.cs" />
     <Compile Include="Assets\Scripts\SecondaryAbility.cs" />
     <Compile Include="Assets\Scripts\Thaumaturge\ThaumaturgeAbsorb.cs" />
     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
