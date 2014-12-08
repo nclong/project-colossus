@@ -78,7 +78,7 @@ public class EnemyAttributes : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        ReflectedHitbox hitbox = (ReflectedHitbox)collider.gameObject.GetComponent<ReflectedHitbox>();
+        FriendlyHitbox hitbox = (FriendlyHitbox)collider.gameObject.GetComponent<FriendlyHitbox>();
         if( hitbox != null )
         {
             CurrentHealth -= hitbox.damage;

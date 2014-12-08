@@ -16,18 +16,18 @@ public class InputManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //for( int i = 0; i < Players.Length; ++i )
-	    for( int i = 0; i < 1; ++i )
+	    for( int i = 0; i < 2; ++i )
         {
-            Players[0].LeftJoystickX = Input.GetAxis( "LeftJoystickX" + i.ToString() );
-            Players[0].LeftJoystickY = Input.GetAxis( "LeftJoystickY" + i.ToString() );
-            Players[0].RightJoystickX = Input.GetAxis( "RightJoystickX" + i.ToString() );
-            Players[0].RightJoystickY = Input.GetAxis( "RightJoystickY" + i.ToString() );
-            Players[0].Abilities[0] = Input.GetButton( "AbilityA" + i.ToString() );
-            Players[0].Abilities[1] = Input.GetButton( "AbilityX" + i.ToString() );
-            Players[0].Abilities[2] = Input.GetButton( "AbilityB" + i.ToString() );
-            Players[0].Abilities[3] = Input.GetButton( "AbilityY" + i.ToString() );
-            Players[0].PrimaryAbility = Input.GetAxis( "Primary" + i.ToString() );
-            Players[0].SecondaryAbility = Input.GetAxis( "Secondary" + i.ToString() );
+            Players[i].LeftJoystickX = Input.GetAxis( "LeftJoystickX" + i.ToString() );
+            Players[i].LeftJoystickY = Input.GetAxis( "LeftJoystickY" + i.ToString() );
+            Players[i].RightJoystickX = Input.GetAxis( "RightJoystickX" + i.ToString() );
+            Players[i].RightJoystickY = Input.GetAxis( "RightJoystickY" + i.ToString() );
+            Players[i].Abilities[0] = Input.GetButton( "AbilityA" + i.ToString() );
+            Players[i].Abilities[1] = Input.GetButton( "AbilityX" + i.ToString() );
+            Players[i].Abilities[2] = Input.GetButton( "AbilityB" + i.ToString() );
+            Players[i].Abilities[3] = Input.GetButton( "AbilityY" + i.ToString() );
+            Players[i].PrimaryAbility = Input.GetAxis( "Primary" + i.ToString() );
+            Players[i].SecondaryAbility = Input.GetAxis( "Secondary" + i.ToString() );
         }
 	}
 }

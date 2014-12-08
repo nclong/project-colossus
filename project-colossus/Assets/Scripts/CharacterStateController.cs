@@ -164,7 +164,7 @@ public class CharacterStateController : MonoBehaviour {
             if( proj != null )
             {
                 HarmfulHitbox oldBox = (HarmfulHitbox)collider.gameObject.GetComponent<HarmfulHitbox>();
-                ReflectedHitbox newBox = (ReflectedHitbox)collider.gameObject.AddComponent<ReflectedHitbox>();
+                FriendlyHitbox newBox = (FriendlyHitbox)collider.gameObject.AddComponent<FriendlyHitbox>();
                 newBox.damage = oldBox.damage * 2;
                 oldBox.enabled = false;
                 collider.gameObject.rigidbody.velocity *= -2;

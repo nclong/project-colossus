@@ -7,14 +7,16 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2FC099C7-92E9-FFFD-645F-0896282014F5}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -79,9 +81,11 @@
     <Compile Include="Assets\Scripts\Enums\Button.cs" />
     <Compile Include="Assets\Scripts\Enums\CharacterState.cs" />
     <Compile Include="Assets\Scripts\Enums\SpriteRotationState.cs" />
+    <Compile Include="Assets\Scripts\FriendlyHitbox.cs" />
     <Compile Include="Assets\Scripts\GameStateManager.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAbility.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IThaumaturgeAbility.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PrimaryAbility.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
@@ -94,9 +98,12 @@
     <Compile Include="Assets\Scripts\Pugilist\PugilistReflect.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistShield.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistShieldCollision.cs" />
-    <Compile Include="Assets\Scripts\ReflectedHitbox.cs" />
     <Compile Include="Assets\Scripts\SecondaryAbility.cs" />
+    <Compile Include="Assets\Scripts\Thaumaturge\DarkRune.cs" />
     <Compile Include="Assets\Scripts\Thaumaturge\ThaumaturgeAbsorb.cs" />
+    <Compile Include="Assets\Scripts\Thaumaturge\ThaumaturgeDark.cs" />
+    <Compile Include="Assets\Scripts\Thaumaturge\ThaumaturgeDarkbolt.cs" />
+    <Compile Include="Assets\Scripts\Thaumaturge\ThaumaturgePlaceRuneCircle.cs" />
     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
