@@ -42,6 +42,7 @@ public class PugilistShield : MonoBehaviour, IAbility {
             case AbilityState.Startup:
                 break;
             case AbilityState.Active:
+                collider.enabled = false;
                 activeTimer += Time.deltaTime;
                 tickTimer += Time.deltaTime;
                 if ( tickTimer >= tickLength )
@@ -79,6 +80,7 @@ public class PugilistShield : MonoBehaviour, IAbility {
     {
         if( !playerInput.Abilities[button] )
         {
+            collider.enabled = true;
             stateController.EndAbilities();
             state = AbilityState.Inactive;
             characterMovement.Moveable = true;

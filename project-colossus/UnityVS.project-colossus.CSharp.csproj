@@ -59,6 +59,12 @@
     <Compile Include="Assets\Scripts\AbilityTimer.cs" />
     <Compile Include="Assets\Scripts\AngleInput.cs" />
     <Compile Include="Assets\Scripts\Apothecary\ApothecaryDrink.cs" />
+    <Compile Include="Assets\Scripts\Boss\Death\DeathAttackManager.cs" />
+    <Compile Include="Assets\Scripts\Boss\Death\DeathFullSwing.cs" />
+    <Compile Include="Assets\Scripts\Boss\EnemyAttackController.cs" />
+    <Compile Include="Assets\Scripts\Boss\EnemyAttributes.cs" />
+    <Compile Include="Assets\Scripts\Boss\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\Boss\HarmfulHitbox.cs" />
     <Compile Include="Assets\Scripts\CharacterAnimationCollector.cs" />
     <Compile Include="Assets\Scripts\CharacterAttributes.cs" />
     <Compile Include="Assets\Scripts\CharacterMovement.cs" />
@@ -68,12 +74,11 @@
     <Compile Include="Assets\Scripts\Electrician\ElectricianCharge.cs" />
     <Compile Include="Assets\Scripts\Electrician\ElectricianMine.cs" />
     <Compile Include="Assets\Scripts\Electrician\ElectricianPlaceMine.cs" />
-    <Compile Include="Assets\Scripts\EnemyAttributes.cs" />
     <Compile Include="Assets\Scripts\Enums\AbilityState.cs" />
     <Compile Include="Assets\Scripts\Enums\Button.cs" />
     <Compile Include="Assets\Scripts\Enums\CharacterState.cs" />
     <Compile Include="Assets\Scripts\Enums\SpriteRotationState.cs" />
-    <Compile Include="Assets\Scripts\HarmfulHitbox.cs" />
+    <Compile Include="Assets\Scripts\GameStateManager.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAbility.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />

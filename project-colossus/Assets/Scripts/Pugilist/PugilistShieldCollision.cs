@@ -12,6 +12,7 @@ public class PugilistShieldCollision : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        harmfulsBlocked = new List<HarmfulHitbox>();
         transform.localScale = transform.localScale.PerspectiveAdjusted();
         characterAttributes = (CharacterAttributes)parent.GetComponent<CharacterAttributes>();
 	}
@@ -28,9 +29,9 @@ public class PugilistShieldCollision : MonoBehaviour {
         if ( hitbox != null )
         {
 
-            if( !harmfulsBlocked.Contains(hitbox) && collisionObject.tag != "Projectile" )
+            if( collisionObject.tag != "Projectile" )
             {
-                characterAttributes.ModifyHealth( -hitCost );
+                characterAttributes.ModifyResource( -hitCost );
                 harmfulsBlocked.Add( hitbox );
             }
 

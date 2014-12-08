@@ -24,6 +24,27 @@ public class CharacterAttributes : MonoBehaviour {
     {
         healthLabel.text = "Health: " + CurrentHealth.ToString() + " / " + MaxHealth.ToString();
         resourceLabel.text = "Mana: " + CurrentResource.ToString() + " / " + MaxResource.ToString();
+
+        if( CurrentResource < 0 )
+        {
+            CurrentResource = 0;
+        }
+
+        if( CurrentResource > MaxResource )
+        {
+            CurrentResource = MaxResource;
+        }
+
+        if( CurrentHealth > MaxHealth )
+        {
+            CurrentHealth = MaxHealth;
+        }
+
+        if( CurrentHealth <= 0 )
+        {
+            Destroy( transform.gameObject );
+            GameStateManager.PlayersLose();
+        }
     }
 
 	public void SetHealth( int newHealth )

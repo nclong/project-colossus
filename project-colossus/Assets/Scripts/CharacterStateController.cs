@@ -141,6 +141,15 @@ public class CharacterStateController : MonoBehaviour {
         }
 	}
 
+    public void OnTriggerEnter(Collider collider)
+    {
+        HarmfulHitbox hitbox = collider.gameObject.GetComponent<HarmfulHitbox>();
+        if( hitbox != null )
+        {
+            attributes.ModifyHealth( -hitbox.damage );
+        }
+    }
+
     public void EndAbilities()
     {
         RemoveState( CharacterState.Ability1 );
