@@ -178,6 +178,13 @@ public class CharacterStateController : MonoBehaviour {
                 attributes.ModifyHealth( -hitbox.damage );
                 if( collider.gameObject.tag == "Projectile" )
                 {
+                    if( characterClass = "thaumaturge" 
+                        && secondaryAbility.Active 
+                        && (Projectile)collider.gameObject.GetComponent<Projectile>().absorbable )
+                    {
+                        attributes.ModifyHealth( hitbox.damage );
+                        attributes.ModifyResource( hitbox.damage );
+                    }
                     Destroy( collider.gameObject );
                 }
             } 

@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour {
 
     public float speed;
     public float life;
+    public bool absorbable;    
 
     private Vector3 velocity;
     private bool active;

@@ -13,15 +13,13 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
     public bool runeFull { get; set; }
     public bool inRune { get; set; }
     public GameObject runeObject;
-    public int chargePerSecond;
     public int placementCost;
+    public int boltCost;
 
     private CharacterAttributes characterAttributes;
     private ThaumaturgeDarkbolt darkbolt;
     private PlayerInput playerInput;
     private DarkRune rune;
-    private float tickLength;
-    private float tickTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -61,19 +59,6 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
                         if( !playerInput.Abilities[button] )
                         {
                             AbilityEnd();
-                        }
-                        else
-                        {
-                            tickTimer += Time.deltaTime;
-                            if( tickTimer >= tickLength )
-                            {
-                                if( characterAttributes.CurrentResource >= 1 )
-                                {
-                                    characterAttributes.ModifyResource( -1 );
-                                    rune.AddCharge( 1 );
-                                    tickTimer = tickLength - tickTimer;
-                                }
-                            }
                         }
                     }
                 }
