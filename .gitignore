@@ -1,8 +1,9 @@
 *
-!.gitignore
-!.cs*
-!.unity*
-!.prefab*
-!.png*
+!*.gitignore
+!*.cs
+!*.unity
+!*.prefab
+!*.png
+!*.meta
 
 !*/

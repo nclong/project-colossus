@@ -18,6 +18,3 @@ C:\Users\Charles\Documents\Dropbox\School\project-colossus\project-colossus\proj
 C:\Users\Charles\Documents\Dropbox\School\project-colossus\project-colossus\project-colossus\obj\Debug\Assembly-CSharp.dll
 C:\Users\Charles\Documents\Dropbox\School\project-colossus\project-colossus\project-colossus\obj\Debug\Assembly-CSharp.pdb
 C:\Users\nickl_000\repositories\project-colossus\project-colossus\Temp\UnityVS_bin\Debug\Assembly-UnityScript-firstpass.dll
-C:\Users\nickl_000\repositories\project-colossus\project-colossus\Temp\UnityVS_bin\Debug\UnityEngine.xml
-C:\Users\nickl_000\repositories\project-colossus\project-colossus\Temp\UnityVS_bin\Debug\UnityEditor.xml
-C:\Users\nickl_000\repositories\project-colossus\project-colossus\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml

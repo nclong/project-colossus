@@ -21,6 +21,10 @@ public class DarkRune : MonoBehaviour {
         statusText.text = currentCharge.ToString() + " / " + chargeRequired.ToString();
         statusText.transform.position = Camera.main.WorldToScreenPoint( transform.position );
         statusText.transform.position = new Vector3( statusText.transform.position.x + 69, statusText.transform.position.y - 35, statusText.transform.position.z );
+        if( currentCharge >= chargeRequired )
+        {
+            transform.gameObject.layer = LayerMask.NameToLayer( "Ignore Raycast" );
+        }
 	}
 
     void OnTriggerEnter(Collider collider)
