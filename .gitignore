@@ -4,6 +4,8 @@
 !*.unity
 !*.prefab
 !*.png
+!*.jpg
+!*.bmp
 !*.meta
 
 !*/

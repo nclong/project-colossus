@@ -50,6 +50,18 @@ public class Projectile : MonoBehaviour {
         rigidbody.velocity = velocity;
     }
 
+    public void SetTargetByAngle_Deg(float deg)
+    {
+        velocity = new Vector3( Mathf.Cos( deg * Mathf.Deg2Rad ), 0f, Mathf.Sin( deg * Mathf.Deg2Rad ) ).normalized.PerspectiveAdjusted() * speed;
+        rigidbody.velocity = velocity;
+    }
+
+    public void SetTargetByAngle_Rad(float rad)
+    {
+        velocity = new Vector3( Mathf.Cos( rad ), 0f, Mathf.Sin( rad ) ).normalized.PerspectiveAdjusted() * speed;
+        rigidbody.velocity = velocity;
+    }
+
     public void Launch()
     {
         active = true;

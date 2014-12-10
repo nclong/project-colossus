@@ -77,7 +77,7 @@ public class ThaumaturgeRedirect : PrimaryAbility {
                     redirectRenderer.SetVectors( transform.position, hitObject.transform.position );
                 }
 
-                if( hitObject.tag == "EnemyObject" )
+                else if( hitObject.tag == "EnemyObject" )
                 {
                     redirectRenderer.SetVectors( transform.position, hitObject.transform.position );
                     if( tick )
@@ -87,7 +87,7 @@ public class ThaumaturgeRedirect : PrimaryAbility {
                     }
                 }
 
-                if( hitObject.tag == "Rune" )
+                else if( hitObject.tag == "Rune" )
                 {
                     //JUST HACK WILL HAVE TO DO THIS REGARDLESS OF RUNE LATER
                     DarkRune runeInfo = (DarkRune)hitObject.GetComponent<DarkRune>();
@@ -99,6 +99,10 @@ public class ThaumaturgeRedirect : PrimaryAbility {
                             runeInfo.AddCharge( 1 );
                         }
                     }
+                }
+                else
+                {
+                    redirectRenderer.SetVectors( transform.position, transform.position + new Vector3( angleInput.Cos, 0f, angleInput.Sin ).normalized * 200 );
                 }
             }
             else

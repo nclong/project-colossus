@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\AbilityTimer.cs" />
     <Compile Include="Assets\Scripts\AngleInput.cs" />
     <Compile Include="Assets\Scripts\Apothecary\ApothecaryDrink.cs" />
+    <Compile Include="Assets\Scripts\Apothecary\ApothecaryTempHeal.cs" />
     <Compile Include="Assets\Scripts\Boss\Death\DeathAttackManager.cs" />
     <Compile Include="Assets\Scripts\Boss\Death\DeathFullSwing.cs" />
     <Compile Include="Assets\Scripts\Boss\Death\DeathProjectile.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\CharacterStateController.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
     <Compile Include="Assets\Scripts\CursorManager.cs" />
+    <Compile Include="Assets\Scripts\Electrician\ElectricianAttack.cs" />
     <Compile Include="Assets\Scripts\Electrician\ElectricianCharge.cs" />
     <Compile Include="Assets\Scripts\Electrician\ElectricianMine.cs" />
     <Compile Include="Assets\Scripts\Electrician\ElectricianPlaceMine.cs" />
