@@ -15,6 +15,8 @@ public class ThaumaturgeDarkbolt : MonoBehaviour {
     private CharacterAttributes characterAttributes;
     private CharacterMovement characterMovement;
     private bool projectileLaunched = false;
+    private AngleInput angle;
+    private RaycastHit hit;
 	// Use this for initialization
 	void Start () {
         darkManager = GetComponent<ThaumaturgeDark>();
@@ -33,14 +35,7 @@ public class ThaumaturgeDarkbolt : MonoBehaviour {
             case AbilityState.Startup:
                 break;
             case AbilityState.Active:
-                if( !projectileLaunched )
-                {
-                    Projectile proj = (Projectile)((GameObject)Instantiate( DarkBoltProjectile, transform.position, transform.rotation )).GetComponent<Projectile>();
-                    AngleInput angle = characterMovement.GetRotationInput();
-                    proj.SetTargetByDirection( new Vector3( angle.Cos, 0f, angle.Sin ) );
-                    proj.Launch();
-                    projectileLaunched = true;
-                }
+
                 break;
             case AbilityState.Cooldown:
                 break;

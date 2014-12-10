@@ -17,6 +17,7 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
     public int boltCost;
 
     private CharacterAttributes characterAttributes;
+    private CharacterStateController stateController;
     private ThaumaturgeDarkbolt darkbolt;
     private PlayerInput playerInput;
     private DarkRune rune;
@@ -28,8 +29,8 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
         inRune = false;
         darkbolt = (ThaumaturgeDarkbolt)GetComponent<ThaumaturgeDarkbolt>();
         playerInput = InputManager.Players[controller];
-        tickLength = 1f / (float)chargePerSecond;
         characterAttributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
+        stateController = (CharacterStateController)GetComponent<CharacterStateController>();
         rune = (DarkRune)runeObject.GetComponent<DarkRune>();
 	}
 	
@@ -38,11 +39,6 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
 	
         if( state == AbilityState.Active)
         {
-            if( !runePlaced && characterAttributes.CurrentResource >= placementCost)
-            {
-                ThaumaturgePlaceRuneCircle.PlaceRune( runeObject, this );
-                characterAttributes.ModifyResource( -placementCost );
-            }
             if( runePlaced )
             {
                 if( inRune )
@@ -63,22 +59,28 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
                     }
                 }
             }
+            if( !runePlaced && characterAttributes.CurrentResource >= placementCost )
+            {
+                ThaumaturgePlaceRuneCircle.PlaceRune( runeObject, this );
+                characterAttributes.ModifyResource( -placementCost );
+                AbilityEnd();
+            }
         }
 	}
 
     public int GetButton()
     {
-        return 0;
+        return button;
     }
 
     public void AbilityStart()
     {
-        tickTimer = 0.0f;
         state = AbilityState.Active;
     }
 
     public void AbilityEnd()
     {
-
+        stateController.EndAbilities();
+        state = AbilityState.Inactive;
     }
 }

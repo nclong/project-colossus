@@ -20,6 +20,7 @@ public class PugilistAttack : PrimaryAbility {
     private AngleInput angle;
 
     private bool startedUpdated = false;
+    private bool activeUpdated = false;
 	// Use this for initialization
 	void Start () {
         timer = new AbilityTimer( m_startupTime, m_activeTime, m_cooldownTime );
@@ -58,7 +59,11 @@ public class PugilistAttack : PrimaryAbility {
 				transform.localPosition
 
             	*/
-                parentAttackObject.SetActive( true );
+                if( !activeUpdated )
+                {
+                    parentAttackObject.SetActive( true );
+                    activeUpdated = true;
+                }
                 break;
             case AbilityState.Cooldown:
                 parentAttackObject.SetActive( false );
@@ -78,6 +83,7 @@ public class PugilistAttack : PrimaryAbility {
             if( playerInput.PrimaryAbility.IsWithin( 0.0f, InputManager.GeneralEpsilon ) )
             {
                 startedUpdated = false;
+                activeUpdated = false;
                 characterMovement.Moveable = true;
                 characterMovement.Rotatable = true;
                 stateController.EndAbilities();

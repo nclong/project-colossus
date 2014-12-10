@@ -29,5 +29,8 @@ public class InputManager : MonoBehaviour {
             Players[i].PrimaryAbility = Input.GetAxis( "Primary" + i.ToString() );
             Players[i].SecondaryAbility = Input.GetAxis( "Secondary" + i.ToString() );
         }
+
+        //string[] s = Input.GetJoystickNames();
+
 	}
 }
