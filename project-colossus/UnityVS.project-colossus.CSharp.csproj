@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ElectricianShot.cs" />
-    <Compile Include="Assets\Electricity\Scripts\LightningBolt.cs" />
     <Compile Include="Assets\ImpulseTest.cs" />
     <Compile Include="Assets\Scripts\AbilityTimer.cs" />
     <Compile Include="Assets\Scripts\AngleInput.cs" />
@@ -98,14 +97,13 @@
     <Compile Include="Assets\Scripts\Pugilist\PugilistShield.cs" />
     <Compile Include="Assets\Scripts\Pugilist\PugilistShieldCollision.cs" />
     <Compile Include="Assets\Scripts\SecondaryAbility.cs" />
-    <Compile Include="Assets\Scripts\Thaumaturge\DarkBoltRenderer.cs" />
     <Compile Include="Assets\Scripts\Thaumaturge\DarkRune.cs" />
+    <Compile Include="Assets\Scripts\Thaumaturge\RedirectRenderer.cs" />
     <Compile Include="Assets\Scripts\Thaumaturge\ThaumaturgeAbsorb.cs" />
     <Compile Include="Assets\Scripts\Thaumaturge\ThaumaturgeDark.cs" />
     <Compile Include="Assets\Scripts\Thaumaturge\ThaumaturgeDarkbolt.cs" />
     <Compile Include="Assets\Scripts\Thaumaturge\ThaumaturgePlaceRuneCircle.cs" />
     <Compile Include="Assets\Scripts\Thaumaturge\ThaumaturgeRedirect.cs" />
-    <None Include="Assets\Electricity\Shaders\lightning.shader" />
     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />

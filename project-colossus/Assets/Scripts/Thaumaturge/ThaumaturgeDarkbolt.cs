@@ -17,6 +17,7 @@ public class ThaumaturgeDarkbolt : MonoBehaviour {
     private bool projectileLaunched = false;
 	// Use this for initialization
 	void Start () {
+        timer = new AbilityTimer( startup, active, cooldown );
         darkManager = GetComponent<ThaumaturgeDark>();
         characterAttributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();

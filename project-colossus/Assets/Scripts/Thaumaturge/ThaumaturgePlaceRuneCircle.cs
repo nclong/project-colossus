@@ -4,10 +4,11 @@ using System.Collections;
 public class ThaumaturgePlaceRuneCircle : MonoBehaviour {
 
     private static Transform playerPos;
-    public static void PlaceRune(GameObject rune, IThaumaturgeAbility ability)
+    public static GameObject PlaceRune(GameObject rune, IThaumaturgeAbility ability)
     {
-        Instantiate( rune, playerPos.position, playerPos.rotation );
         ability.runePlaced = true;
+        return (GameObject)Instantiate( rune, playerPos.position, playerPos.rotation );
+        
     }
 
     // Use this for initialization

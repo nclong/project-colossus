@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
 {
@@ -15,6 +16,7 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
     public GameObject runeObject;
     public int placementCost;
     public int boltCost;
+    public Text statusText;
 
     private CharacterAttributes characterAttributes;
     private CharacterStateController stateController;
@@ -58,11 +60,21 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
                         }
                     }
                 }
+                else
+                {
+                    AbilityEnd();
+                }
             }
-            if( !runePlaced && characterAttributes.CurrentResource >= placementCost )
+            if( !runePlaced )
             {
-                ThaumaturgePlaceRuneCircle.PlaceRune( runeObject, this );
-                characterAttributes.ModifyResource( -placementCost );
+
+                if( characterAttributes.CurrentResource >= placementCost )
+                {
+                    GameObject runeInstance = ThaumaturgePlaceRuneCircle.PlaceRune( runeObject, this );
+                    DarkRune runeData = (DarkRune)runeInstance.GetComponent<DarkRune>();
+                    runeData.SetText( statusText );
+                    characterAttributes.ModifyResource( -placementCost ); 
+                }
                 AbilityEnd();
             }
         }

@@ -14,7 +14,6 @@ public class PugilistAttack : PrimaryAbility {
     public float offset;
     public GameObject parentAttackObject;
 
-    private CharacterStateController stateController;
     private CharacterMovement characterMovement;
     private PlayerInput playerInput;
     private AngleInput angle;
@@ -24,7 +23,6 @@ public class PugilistAttack : PrimaryAbility {
 	// Use this for initialization
 	void Start () {
         timer = new AbilityTimer( m_startupTime, m_activeTime, m_cooldownTime );
-        stateController = (CharacterStateController)GetComponent<CharacterStateController>();
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
         state = AbilityState.Inactive;
         playerInput = InputManager.Players[m_controller];
@@ -86,8 +84,6 @@ public class PugilistAttack : PrimaryAbility {
                 activeUpdated = false;
                 characterMovement.Moveable = true;
                 characterMovement.Rotatable = true;
-                stateController.EndAbilities();
-                stateController.RemoveState( CharacterState.Primary );
                 AbilityEnd();
             }
         }

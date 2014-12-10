@@ -7,7 +7,6 @@ public class PugilistCharge : SecondaryAbility {
     public int m_controller;
     public int chargeAmount;
 
-    private CharacterStateController stateController;
     private CharacterMovement characterMovement;
     private CharacterAttributes characterAttributes;
     private PlayerInput playerInput;
@@ -17,7 +16,6 @@ public class PugilistCharge : SecondaryAbility {
 
 	// Use this for initialization
 	void Start () {
-        stateController = (CharacterStateController)GetComponent<CharacterStateController>();
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
         characterAttributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
         state = AbilityState.Inactive;
@@ -50,8 +48,6 @@ public class PugilistCharge : SecondaryAbility {
                 {
                     characterMovement.Moveable = true;
                     characterMovement.Rotatable = true;
-                    stateController.EndAbilities();
-                    stateController.RemoveState( CharacterState.Secondary );
                     startedUpdating = false;
                     AbilityEnd();
                 }

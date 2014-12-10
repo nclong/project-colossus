@@ -1,29 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class DarkRune : MonoBehaviour {
 
     public int chargeRequired;
-    private int currentCharge = 0;
+    public Text statusText;
+    public int currentCharge { get; private set; }
 
     private SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 	void Start () {
         spriteRenderer = (SpriteRenderer)renderer;
+        currentCharge = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-        if( chargeRequired >= currentCharge )
-        {
-            spriteRenderer.color = new Color( spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b );
-        }
-        else
-        {
-            spriteRenderer.color = new Color( spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, (float)currentCharge * 255f / (float)chargeRequired ); 
-        }
+        statusText.text = currentCharge.ToString() + " / " + chargeRequired.ToString();
+        statusText.transform.position = Camera.main.WorldToScreenPoint( transform.position );
+        statusText.transform.position = new Vector3( statusText.transform.position.x + 69, statusText.transform.position.y - 35, statusText.transform.position.z );
 	}
 
     void OnTriggerEnter(Collider collider)
@@ -56,5 +53,11 @@ public class DarkRune : MonoBehaviour {
     public void AddCharge(int x )
     {
         currentCharge += x;
+    }
+
+    public void SetText(Text txt)
+    {
+        statusText = txt;
+        statusText.enabled = true;
     }
 }
