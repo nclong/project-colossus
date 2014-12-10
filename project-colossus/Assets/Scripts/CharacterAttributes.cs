@@ -43,7 +43,7 @@ public class CharacterAttributes : MonoBehaviour {
         if( CurrentHealth <= 0 )
         {
             Destroy( transform.gameObject );
-            GameStateManager.PlayersLose();
+            GameStateManager.playersDead++;
         }
     }
 

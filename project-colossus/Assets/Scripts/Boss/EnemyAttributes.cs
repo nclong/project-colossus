@@ -9,6 +9,7 @@ public class EnemyAttributes : MonoBehaviour {
     public int Defense;
     public Text healthLabel;
     public int CurrentHealth { get; private set; }
+    public bool banishReady { get; private set; }
 
     private Dictionary<GameObject, int> aggroDict;
 
@@ -16,6 +17,7 @@ public class EnemyAttributes : MonoBehaviour {
 	void Start () {
         aggroDict = new Dictionary<GameObject, int>();
         CurrentHealth = MaxHealth;
+        banishReady = false;
 	}
 	
 	// Update is called once per frame
@@ -23,8 +25,21 @@ public class EnemyAttributes : MonoBehaviour {
 	    if( CurrentHealth <= 0 )
         {
             CurrentHealth = 0;
-            Destroy( transform.gameObject );
-            GameStateManager.PlayersWin();
+            banishReady = true;
+        }
+
+        if( banishReady )
+        {
+            GameObject rune = GameObject.FindGameObjectWithTag( "Rune" );
+            if( rune != null )
+            {
+                DarkRune runeInfo = (DarkRune)rune.GetComponent<DarkRune>();
+                if( runeInfo.currentCharge >= runeInfo.chargeRequired )
+                {
+                    GameStateManager.PlayersWin();
+                    Destroy( transform.gameObject );
+                }
+            }
         }
 
         healthLabel.text = CurrentHealth.ToString() + " / " + MaxHealth.ToString();
