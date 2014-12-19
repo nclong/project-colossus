@@ -29,7 +29,7 @@ public class ThaumaturgeAbsorb : SecondaryAbility {
 			}
 
 
-			if( playerInput.SecondaryAbility.IsWithin( 0.0f, InputManager.GeneralEpsilon ))
+			if( playerInput.PrimaryAbility.IsWithin( 0.0f, InputManager.GeneralEpsilon ))
 			{
 				spriteRenderer.color = new Color( 255f, 255f, 255f );
 				firstUpdate = true;

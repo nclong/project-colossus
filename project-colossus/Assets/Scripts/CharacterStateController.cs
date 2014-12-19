@@ -16,6 +16,8 @@ public class CharacterStateController : MonoBehaviour {
     private PrimaryAbility primaryAbility;
     private CharacterAttributes attributes;
 
+	public bool primary;
+
 	// Use this for initialization
 	void Start () {
         playerInput = InputManager.Players[m_controller];
@@ -45,6 +47,10 @@ public class CharacterStateController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (characterClass == "electrician") {
+						EndAbilities ();
+				}
+		primary = HasState (CharacterState.Primary);
         characterMovement.Moveable = false;
         characterMovement.Rotatable = false;
         if( !playerInput.LeftJoystickIsNull ) { AddState( CharacterState.Moving ); }
@@ -65,14 +71,14 @@ public class CharacterStateController : MonoBehaviour {
         {
             AddState( CharacterState.Ability4 );
         }
-        if( playerInput.SecondaryAbility.IsGreaterThanPlusEpsilon( 0.0f, InputManager.GeneralEpsilon ) )
-        {
-            AddState( CharacterState.Secondary );
-        }
-        if( playerInput.PrimaryAbility.IsGreaterThanPlusEpsilon( 0.0f, InputManager.GeneralEpsilon ))
-        {
-            AddState( CharacterState.Primary );
-        }
+        if (playerInput.PrimaryAbility.IsGreaterThanPlusEpsilon (0.0f, InputManager.GeneralEpsilon)) {
+						AddState (CharacterState.Secondary);
+				} else if (playerInput.PrimaryAbility.IsLessThanMinusEpsilon (0.0f, InputManager.GeneralEpsilon)) {
+						AddState (CharacterState.Primary);
+				} else {
+			RemoveState( CharacterState.Secondary );
+			RemoveState ( CharacterState.Primary );
+				}
 
         if( attributes.CurrentHealth <= 0 )
         {

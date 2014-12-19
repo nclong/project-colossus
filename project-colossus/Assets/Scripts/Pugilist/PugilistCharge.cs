@@ -44,7 +44,7 @@ public class PugilistCharge : SecondaryAbility {
                     characterAttributes.ModifyResource( 1 );
                     tickTimer = tickTimer - tickLength;
                 }
-                if( playerInput.SecondaryAbility.IsWithin(0.0f, InputManager.GeneralEpsilon ))
+                if( playerInput.PrimaryAbility.IsWithin(0.0f, InputManager.GeneralEpsilon ))
                 {
                     characterMovement.Moveable = true;
                     characterMovement.Rotatable = true;

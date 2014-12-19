@@ -83,7 +83,7 @@ public class ThaumaturgeRedirect : PrimaryAbility {
                     if( tick )
                     {
                         EnemyAttributes enemyInfo = (EnemyAttributes)hitObject.GetComponent<EnemyAttributes>();
-                        enemyInfo.ModifyHealth( -100 );
+                        enemyInfo.ModifyHealth( -6 );
                     }
                 }
 

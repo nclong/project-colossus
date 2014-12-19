@@ -10,9 +10,9 @@ public static class Constants {
         return Mathf.Abs( Mathf.Abs( x ) - target ) <= epsilon;
     }
 
-    public static bool IsLessThanPlusEpsilon( this float x, float target, float epsilon)
+    public static bool IsLessThanMinusEpsilon( this float x, float target, float epsilon)
     {
-        return x < ( target + epsilon );
+        return x < ( target - epsilon );
     }
 
     public static bool IsGreaterThanPlusEpsilon( this float x, float target, float epsilon)
