@@ -2,13 +2,18 @@
 using System.Collections;
 
 public class ElectricianPlaceMine : MonoBehaviour, IAbility {
+    public GameObject player;
+    public GameObject mine;
+
+    public int max_mine;
+    public int current_mine;
+    public int cost;
+
     public int m_controller;
     public int m_button;
     public float m_startupTime;
     public float m_activeTime;
     public float m_cooldownTime;
-
-    public int cost;
 
     private CharacterMovement char_movement;
     private CharacterAttributes char_attributes;
@@ -20,12 +25,6 @@ public class ElectricianPlaceMine : MonoBehaviour, IAbility {
     private CharacterStateController stateController;
     private PlayerInput playerInput;
     private int button;
-    
-    public GameObject player;
-    public GameObject mine;
-
-    public int max_mine;
-    public int current_mine;
 
 	// Use this for initialization
 	void Start () {
@@ -33,12 +32,11 @@ public class ElectricianPlaceMine : MonoBehaviour, IAbility {
         stateController = (CharacterStateController)GetComponent<CharacterStateController>();
         char_attributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
         char_movement = (CharacterMovement)GetComponent<CharacterMovement>();
+        button = m_button;
 
         state = AbilityState.Inactive;
-        button = m_button;
         playerInput = InputManager.Players[m_controller];
 
-        
         current_mine = 0;
 	}
 	
@@ -50,19 +48,22 @@ public class ElectricianPlaceMine : MonoBehaviour, IAbility {
             AbilityEnd();
         }
 	}
+
     public void AbilityStart()
     {
-        angle = char_movement.GetRotationInput();
-        timer.Start();
-        char_attributes.ModifyResource(-cost);
+        if (current_mine < max_mine)
+        {
+            angle = char_movement.GetRotationInput();
+            timer.Start();
+            char_attributes.ModifyResource(-cost);
+            current_mine++;
+            
+            Vector3 pos = transform.position + new Vector3(angle.Cos, 0f, angle.Sin).PerspectiveAdjusted() * 10;
+            GameObject newMine = (GameObject)Instantiate(mine, pos, Quaternion.identity);
+            ((ElectricianMine)newMine.GetComponent<ElectricianMine>()).player = transform.gameObject;
 
-        Vector3 pos = transform.position + new Vector3( angle.Cos, 0f, angle.Sin).PerspectiveAdjusted() * 10;
-        GameObject newMine = (GameObject)Instantiate(mine, pos, Quaternion.identity);
-        ((ElectricianMine)newMine.GetComponent<ElectricianMine>()).player = transform.gameObject;
-
-        current_mine++;
-        AbilityEnd();
-        Debug.Log("Placed a Mine");
+            AbilityEnd();
+        }
     }
 
     public void AbilityEnd()

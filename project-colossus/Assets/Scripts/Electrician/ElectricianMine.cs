@@ -22,16 +22,12 @@ public class ElectricianMine : MonoBehaviour {
 
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.tag == "Enemy")
+        if (coll.tag == "EnemyObject")
         {
             //Enemy stepped on the mine, explode in 1 second
-            Invoke("MineExplode", 1);
-
-            //Mine exploded, make the mine disappear
+            MineExplode();
             renderer.enabled = false;
-
-            //Delete from hierarchy
-            Invoke("DestroyMine", 1);
+            DestroyMine();
         }
 
     }
@@ -46,13 +42,11 @@ public class ElectricianMine : MonoBehaviour {
 
         foreach (Collider enemy in enemy_in_range)
         {
-            if (enemy.gameObject.CompareTag("Enemy"))
+            if (enemy.gameObject.CompareTag("EnemyObject"))
             {
                 //Deal damage to enemy in blast range
-                CharacterAttributes enemy_attribute = enemy.GetComponentInParent<CharacterAttributes>();
+                EnemyAttributes enemy_attribute = enemy.GetComponent<EnemyAttributes>();
                 enemy_attribute.ModifyHealth(-mine_damage);
-
-                Debug.Log(enemy.transform.root.name + " has taken " + mine_damage + " damage.");
             }
         }
     }
