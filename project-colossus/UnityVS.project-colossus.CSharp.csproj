@@ -54,7 +54,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ElectricianShot.cs" />
     <Compile Include="Assets\ImpulseTest.cs" />
     <Compile Include="Assets\Scripts\AbilityTimer.cs" />
     <Compile Include="Assets\Scripts\AngleInput.cs" />

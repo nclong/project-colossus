@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour {
     public float speed;
     public bool moveable = true;
 
-    public Vector3 targetDestination;
+    public Vector2 targetDestination;
     private EnemyAttributes attributes;
     private bool targetSet = false;
 
@@ -23,10 +23,10 @@ public class EnemyMovement : MonoBehaviour {
     {
         if( moveable )
         {
-            float distance = Vector3.Distance( transform.position, targetDestination );
+            float distance = Vector2.Distance( transform.position, targetDestination );
             if( targetSet && distance > distanceFromGoal )
             {
-                rigidbody.velocity = ( targetDestination - transform.position ).normalized.PerspectiveAdjusted() * speed;
+                rigidbody2D.velocity = ( targetDestination - transform.position.In2D() ).normalized * speed;
             }
 
             if( distance <= distanceFromGoal )
@@ -43,7 +43,7 @@ public class EnemyMovement : MonoBehaviour {
         {
             if( !targetSet )
             {
-                targetDestination = new Vector3( Random.Range( leftLimit, rightLimit ), transform.position.y, Random.Range( bottomLimit, topLimit ) );
+                targetDestination = new Vector2( Random.Range( leftLimit, rightLimit ), Random.Range( bottomLimit, topLimit ) );
                 targetSet = true; 
             }
         }

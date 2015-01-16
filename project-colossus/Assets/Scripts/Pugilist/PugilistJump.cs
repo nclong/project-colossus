@@ -74,16 +74,18 @@ public class PugilistJump : MonoBehaviour, IAbility {
     {
         AngleInput angle = characterMovement.GetRotationInput();
         start = transform.position;
-        target = transform.position + (new Vector3( angle.Cos, 0f, angle.Sin).normalized).PerspectiveAdjusted() * m_jumpDistance;
+        target = transform.position + (new Vector3( angle.Cos, angle.Sin, transform.position.z).normalized) * m_jumpDistance;
         startScale = transform.localScale;
         targetScale = transform.localScale * 1.5f;
         activeTimer = 0.0f;
         timer.Start();
         characterAttributes.ModifyResource( -cost );
+        collider2D.isTrigger = true;
     }
 
     public void AbilityEnd()
     {
+        collider2D.isTrigger = false;
         transform.localScale = startScale;
         if( !playerInput.Abilities[button] )
         {            

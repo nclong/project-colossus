@@ -27,7 +27,7 @@ public class DarkRune : MonoBehaviour {
         }
 	}
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         ThaumaturgeDark dark = (ThaumaturgeDark)collider.gameObject.GetComponent<ThaumaturgeDark>();
         if( dark != null )
@@ -41,7 +41,7 @@ public class DarkRune : MonoBehaviour {
 
     }
 
-    void OnTriggerExit(Collider collider)
+    void OnTriggerExit2D(Collider2D collider)
     {
         ThaumaturgeDark dark = (ThaumaturgeDark)collider.gameObject.GetComponent<ThaumaturgeDark>();
         if( dark != null )

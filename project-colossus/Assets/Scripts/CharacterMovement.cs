@@ -33,7 +33,8 @@ public class CharacterMovement : MonoBehaviour {
     {
         if( Moveable )
         {
-            rigidbody.velocity = new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY ).PerspectiveAdjusted() * m_movementSpeed; 
+            //rigidbody.velocity = new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY ).PerspectiveAdjusted() * m_movementSpeed;
+            rigidbody2D.velocity = new Vector2( playerInput.LeftJoystickX, playerInput.LeftJoystickY ) * m_movementSpeed;
         }
     }
 	

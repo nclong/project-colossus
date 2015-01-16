@@ -52,4 +52,9 @@ public static class Constants {
             return new Dictionary<string, Type>( dict );
         }
     }
+
+    public static Vector2 In2D( this Vector3 u )
+    {
+        return new Vector2( u.x, u.y );
+    }
 }

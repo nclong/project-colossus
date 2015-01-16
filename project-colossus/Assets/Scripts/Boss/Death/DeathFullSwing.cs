@@ -44,11 +44,11 @@ public class DeathFullSwing : MonoBehaviour {
             if( attackTimer < swingLength )
             {
                 swingObject.SetActive( true );
-                swingObject.transform.eulerAngles = new Vector3( swingObject.transform.eulerAngles.x, (attackTimer * 360f) / swingLength, swingObject.transform.eulerAngles.z );
+                swingObject.transform.eulerAngles = new Vector3( swingObject.transform.eulerAngles.x, swingObject.transform.eulerAngles.y, ( attackTimer * 360f ) / swingLength );
             }
             else
             {
-                swingObject.transform.eulerAngles = new Vector3( swingObject.transform.eulerAngles.x, 0f, swingObject.transform.eulerAngles.z );
+                swingObject.transform.eulerAngles = new Vector3( swingObject.transform.eulerAngles.x, swingObject.transform.eulerAngles.y, 0f );
                 swingObject.SetActive( false );
                 swinging = false;
             }

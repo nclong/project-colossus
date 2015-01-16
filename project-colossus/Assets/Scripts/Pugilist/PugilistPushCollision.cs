@@ -21,23 +21,23 @@ public class PugilistPushCollision : MonoBehaviour {
 	
 	}
 
-    public void OnTriggerEnter(Collider collider)
+    public void OnTriggerEnter2D(Collider2D coll)
     {
         CharacterMovement playerTest = collider.gameObject.GetComponent<CharacterMovement>();
         if( playerTest != null )
         {
             angle = movement.GetRotationInput();
-            collider.rigidbody.AddForce( new Vector3( angle.Cos, 0f, angle.Sin ).PerspectiveAdjusted() * force, ForceMode.Impulse );
+            coll.rigidbody2D.AddForce( new Vector2( angle.Cos, angle.Sin ) * force, ForceMode2D.Impulse );
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter2D( Collision2D coll )
     {
-        CharacterMovement playerTest = collision.gameObject.GetComponent<CharacterMovement>();
+        CharacterMovement playerTest = collider.gameObject.GetComponent<CharacterMovement>();
         if( playerTest != null )
         {
             angle = movement.GetRotationInput();
-            collision.rigidbody.AddForce( new Vector3( angle.Cos, 0f, angle.Sin ).PerspectiveAdjusted() * force, ForceMode.Impulse );
+            coll.rigidbody.AddForce( new Vector2( angle.Cos, angle.Sin ) * force, ForceMode2D.Impulse );
         }
     }
 }

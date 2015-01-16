@@ -58,7 +58,7 @@ public class ElectricianPlaceMine : MonoBehaviour, IAbility {
             char_attributes.ModifyResource(-cost);
             current_mine++;
             
-            Vector3 pos = transform.position + new Vector3(angle.Cos, 0f, angle.Sin).PerspectiveAdjusted() * 10;
+            Vector3 pos = transform.position + new Vector3(angle.Cos, angle.Sin, 0f) * 10;
             GameObject newMine = (GameObject)Instantiate(mine, pos, Quaternion.identity);
             ((ElectricianMine)newMine.GetComponent<ElectricianMine>()).player = transform.gameObject;
 

@@ -22,7 +22,7 @@ public class PugilistShieldCollision : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         GameObject collisionObject = collider.gameObject;
         HarmfulHitbox hitbox = collisionObject.GetComponent<HarmfulHitbox>() as HarmfulHitbox;

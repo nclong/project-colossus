@@ -147,7 +147,7 @@ public class CharacterStateController : MonoBehaviour {
         }
 	}
 
-    public void OnTriggerEnter(Collider collider)
+    public void OnCollisionEnter2D(Collision2D collider)
     {
         bool reflect;
         PugilistReflect possibleReflect;

@@ -15,7 +15,7 @@ public class PugilistAttackCollision : MonoBehaviour {
         aggro = attackComp.aggroGenerated;
 	}
 	
-	void OnTriggerEnter(Collider collider)
+	void OnTriggerEnter2D(Collider2D collider)
     {
         EnemyAttributes enemy = (EnemyAttributes)collider.gameObject.GetComponent<EnemyAttributes>();
         if( enemy != null )

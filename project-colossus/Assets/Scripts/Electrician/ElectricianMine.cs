@@ -20,7 +20,7 @@ public class ElectricianMine : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter(Collider coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.tag == "EnemyObject")
         {
@@ -38,9 +38,10 @@ public class ElectricianMine : MonoBehaviour {
 
         //Get all enemy in blast range
         Vector3 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        Collider[] enemy_in_range = Physics.OverlapSphere(pos, blast_radius);
+        //Collider[] enemy_in_range = Physics.OverlapSphere(pos, blast_radius);
+        Collider2D[] enemy_in_range = Physics2D.OverlapCircleAll( pos.In2D(), blast_radius );
 
-        foreach (Collider enemy in enemy_in_range)
+        foreach (Collider2D enemy in enemy_in_range)
         {
             if (enemy.gameObject.CompareTag("EnemyObject"))
             {

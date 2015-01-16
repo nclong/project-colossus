@@ -91,9 +91,9 @@ public class EnemyAttributes : MonoBehaviour {
         return goMax;
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnColliderEnter2D(Collision2D collision)
     {
-        FriendlyHitbox hitbox = (FriendlyHitbox)collider.gameObject.GetComponent<FriendlyHitbox>();
+        FriendlyHitbox hitbox = (FriendlyHitbox)collision.gameObject.GetComponent<FriendlyHitbox>();
         if( hitbox != null )
         {
             CurrentHealth -= hitbox.damage;
