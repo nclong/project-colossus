@@ -10,7 +10,9 @@ public class CharacterMovement : MonoBehaviour {
     public float maxSpeed;
     public float movementDecay;
     public float velocityZeroThreshold;
-    public float m_rotationSpeed;
+    public float rotationMaxSpeed;
+    public float rotationAcceleration;
+    public float rotationZeroThreshold;
 
     public int m_controller;
 
@@ -22,8 +24,9 @@ public class CharacterMovement : MonoBehaviour {
     private PlayerInput playerInput;
     private CharacterStateController stateController;
     private float actualMaxSpeed;
-    private Vector2 leftStickVector;
-    private Vector2 rightStickVector;
+    private float actualMaxRotationSpeed;
+    private float rotationSpeed;
+    private bool rotateClockwise;
 
 	// Use this for initialization
 	void Start () {
@@ -49,7 +52,7 @@ public class CharacterMovement : MonoBehaviour {
            }
            else
            {
-               leftStickVector = new Vector2( playerInput.LeftJoystickX, playerInput.LeftJoystickY );
+               Vector2 leftStickVector = new Vector2( playerInput.LeftJoystickX, playerInput.LeftJoystickY );
                actualMaxSpeed = maxSpeed * leftStickVector.magnitude;
                rigidbody2D.velocity += leftStickVector * acceleration;
                if( rigidbody2D.velocity.magnitude > actualMaxSpeed )
@@ -61,7 +64,101 @@ public class CharacterMovement : MonoBehaviour {
 
         if( Rotatable && !playerInput.RightJoystickIsNull )
         {
-            facingAngle = Mathf.Atan2( playerInput.RightJoystickY, playerInput.RightJoystickX ) * Mathf.Rad2Deg;
+            float stickAngle = Mathf.Atan2( playerInput.RightJoystickY, playerInput.RightJoystickX ) * Mathf.Rad2Deg;
+            actualMaxRotationSpeed = rotationMaxSpeed * new Vector2( playerInput.RightJoystickX, playerInput.RightJoystickY ).magnitude;
+            rotationSpeed += rotationAcceleration * new Vector2( playerInput.RightJoystickX, playerInput.RightJoystickY ).magnitude;
+            if( rotationSpeed > actualMaxRotationSpeed )
+            {
+                rotationSpeed = actualMaxRotationSpeed;
+            }
+
+            if( stickAngle == 0f )
+            {
+                stickAngle = 360f;
+            }
+
+            if( facingAngle == 0f )
+            {
+                facingAngle = 360f;
+            }
+
+            if( stickAngle > facingAngle )
+            {
+                if( stickAngle - facingAngle >= 180 )
+                {
+                    rotateClockwise = true;
+                }
+                else
+                {
+                    rotateClockwise = false;
+                }
+            }
+            else
+            {
+                if( facingAngle - stickAngle >= 180 )
+                {
+                    rotateClockwise = false;
+                }
+                else
+                {
+                    rotateClockwise = true;
+                }
+            }
+
+            if( facingAngle > 270 && ((360 - facingAngle) + stickAngle) < rotationSpeed )
+            {
+                facingAngle = stickAngle;
+            }
+            else if( stickAngle > 270 && ((360 - stickAngle) + facingAngle) < rotationSpeed )
+            {
+                facingAngle = stickAngle;
+            }
+            else
+            {
+                if( rotateClockwise )
+                {
+                    float targetAngle = facingAngle - rotationSpeed;
+                    if( rotationSpeed < 0 )
+                    {
+                        rotationSpeed += 360f;
+                    }
+                    if( targetAngle < stickAngle)
+                    {
+                        facingAngle = stickAngle;
+                    }
+                    else
+                    {
+                        facingAngle = targetAngle;
+                    }
+                }
+                else
+                {
+                    float targetAngle = facingAngle + rotationSpeed;
+                    if( rotationSpeed > 360 )
+                    {
+                        rotationSpeed -= 360f;
+                    }
+                    if( targetAngle > stickAngle )
+                    {
+                        facingAngle = stickAngle;
+                    }
+                    else
+                    {
+                        facingAngle = targetAngle;
+                    }
+                }
+            }
+
+            if( Mathf.Abs(stickAngle - facingAngle) <= rotationZeroThreshold )
+            {
+                facingAngle = stickAngle;
+            }
+
+        }
+        else
+        {
+            actualMaxRotationSpeed = 0f;
+            rotationSpeed = 0f;
         }
 
         if( facingAngle >= 0 && facingAngle < 180 )
