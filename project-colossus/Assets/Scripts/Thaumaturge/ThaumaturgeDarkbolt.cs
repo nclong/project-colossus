@@ -25,7 +25,7 @@ public class ThaumaturgeDarkbolt : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         timer.Update();
         state = timer.State;
 

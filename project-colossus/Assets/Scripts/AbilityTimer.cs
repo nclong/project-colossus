@@ -18,7 +18,6 @@ public class AbilityTimer {
         timerMax = startupTime + activeTime + cooldownTime;
     }
 
-	//Update is called once per frame
 	public void Update () {
         if( State != AbilityState.Inactive && State != AbilityState.Null )
         {

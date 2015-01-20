@@ -41,7 +41,7 @@ public class ElectricianPlaceMine : MonoBehaviour, IAbility {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         state = timer.State;
         if( state != AbilityState.Inactive )
         {

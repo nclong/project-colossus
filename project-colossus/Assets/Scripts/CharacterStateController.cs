@@ -46,7 +46,7 @@ public class CharacterStateController : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (characterClass == "electrician") {
 						EndAbilities ();
 				}
@@ -71,14 +71,19 @@ public class CharacterStateController : MonoBehaviour {
         {
             AddState( CharacterState.Ability4 );
         }
-        if (playerInput.PrimaryAbility.IsGreaterThanPlusEpsilon (0.0f, InputManager.GeneralEpsilon)) {
-						AddState (CharacterState.Secondary);
-				} else if (playerInput.PrimaryAbility.IsLessThanMinusEpsilon (0.0f, InputManager.GeneralEpsilon)) {
-						AddState (CharacterState.Primary);
-				} else {
-			RemoveState( CharacterState.Secondary );
-			RemoveState ( CharacterState.Primary );
-				}
+        if( playerInput.PrimaryAbility > InputManager.GeneralEpsilon )
+        {
+            AddState( CharacterState.Secondary );
+        }
+        else if( playerInput.PrimaryAbility < InputManager.GeneralEpsilon * -1 )
+        {
+            AddState( CharacterState.Primary );
+        }
+        else
+        {
+            RemoveState( CharacterState.Secondary );
+            RemoveState( CharacterState.Primary );
+        }
 
         if( attributes.CurrentHealth <= 0 )
         {
@@ -86,11 +91,6 @@ public class CharacterStateController : MonoBehaviour {
             attributes.SetHealth( 0 );
         }
 
-
-        /* NOT YET IMPLIMENTED
-         * if( playerInput.PrimaryAbility > 0.025f ) { AddState( CharacterState.Primary ); }
-         * if( playerInput.SecondaryAbility > 0.025f ) { AddState( CharacterState.Secondary ); }
-         */
 
         if( HasState(CharacterState.Ability1) )
         {
@@ -213,7 +213,8 @@ public class CharacterStateController : MonoBehaviour {
 
     public void AddState( CharacterState toAdd )
     {
-        State |= (uint)toAdd;
+        uint toAddInt = (uint)toAdd;
+        State |= toAddInt;
     }
 
     public void RemoveState( CharacterState toRemove )

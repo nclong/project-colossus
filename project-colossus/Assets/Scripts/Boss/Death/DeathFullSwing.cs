@@ -19,7 +19,7 @@ public class DeathFullSwing : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         swingObject.transform.localPosition = new Vector3( 0f, 0f, 0.26f );
         if( !swinging )
         {

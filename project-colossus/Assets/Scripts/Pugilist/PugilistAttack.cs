@@ -29,7 +29,7 @@ public class PugilistAttack : PrimaryAbility {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         timer.Update();
         state = timer.State;
         switch( state )
@@ -42,7 +42,7 @@ public class PugilistAttack : PrimaryAbility {
                     startedUpdated = true;
                     characterMovement.Moveable = false;
                     characterMovement.Rotatable = false;
-                    parentAttackObject.transform.localPosition = new Vector3( angle.Cos, parentAttackObject.transform.localPosition.y, angle.Sin ).PerspectiveAdjusted() * offset;
+                    parentAttackObject.transform.localPosition = new Vector3( angle.Cos, parentAttackObject.transform.localPosition.y, angle.Sin ) * offset;
                     parentAttackObject.transform.localScale = new Vector3( radius, radius, radius );
                 }
                 break;

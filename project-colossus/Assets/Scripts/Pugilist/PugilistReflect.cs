@@ -43,7 +43,7 @@ public class PugilistReflect : MonoBehaviour, IAbility
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         timer.Update();

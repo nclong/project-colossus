@@ -35,7 +35,7 @@ public class PugilistShield : MonoBehaviour, IAbility {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         switch( state )
         {

@@ -18,11 +18,6 @@ public class Projectile : MonoBehaviour {
 
     void FixedUpdate()
     {
-        //rigidbody.velocity = velocity;
-    }
-
-    void Update()
-    {
         if( activeTimer >= life)
         {
             active = false;

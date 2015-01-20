@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\FriendlyHitbox.cs" />
     <Compile Include="Assets\Scripts\GameStateManager.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\InputViewer.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAbility.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IThaumaturgeAbility.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />

@@ -22,7 +22,7 @@ public class ElectricianAttack : PrimaryAbility {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         characterMovement.Moveable = true;
         characterMovement.Rotatable = true;
         if( state == AbilityState.Startup )

@@ -38,7 +38,7 @@ public class PugilistJump : MonoBehaviour, IAbility {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         timer.Update();
         state = timer.State;
         switch( state )

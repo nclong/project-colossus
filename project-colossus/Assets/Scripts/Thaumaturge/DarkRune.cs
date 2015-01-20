@@ -17,7 +17,7 @@ public class DarkRune : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         statusText.text = currentCharge.ToString() + " / " + chargeRequired.ToString();
         statusText.transform.position = Camera.main.WorldToScreenPoint( transform.position );
         statusText.transform.position = new Vector3( statusText.transform.position.x + 69, statusText.transform.position.y - 35, statusText.transform.position.z );

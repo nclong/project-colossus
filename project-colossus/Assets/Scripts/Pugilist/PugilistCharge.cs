@@ -24,7 +24,7 @@ public class PugilistCharge : SecondaryAbility {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         switch( state )
         {
             case AbilityState.Startup:

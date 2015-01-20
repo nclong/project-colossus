@@ -15,7 +15,7 @@ public class DeathProjectile : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if( Random.Range( chance, 101f ) >= 100f )
         {
             GameObject proj = (GameObject)Instantiate( projectilePrefab, transform.position, transform.rotation );

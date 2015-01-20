@@ -37,7 +37,7 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 	
         if( state == AbilityState.Active)
         {

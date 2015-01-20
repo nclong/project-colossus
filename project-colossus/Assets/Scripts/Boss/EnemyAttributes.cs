@@ -21,7 +21,7 @@ public class EnemyAttributes : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 	    if( CurrentHealth <= 0 )
         {
             CurrentHealth = 0;

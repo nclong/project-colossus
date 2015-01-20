@@ -17,7 +17,7 @@ public class ThaumaturgeAbsorb : SecondaryAbility {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if( state == AbilityState.Startup ) { state = AbilityState.Active;  }
 		if( state == AbilityState.Active )
 		{

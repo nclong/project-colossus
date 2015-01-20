@@ -6,13 +6,12 @@ using System.ComponentModel;
 public class CharacterMovement : MonoBehaviour {
     public string m_characterName;
 
-    [Range(0f, 1000.0f)]
-    public float m_movementSpeed;
-
-    [Range( 0f, 1.0f )]
+    public float acceleration;
+    public float maxSpeed;
+    public float movementDecay;
+    public float velocityZeroThreshold;
     public float m_rotationSpeed;
 
-    [Range( 0f, 3.0f )]
     public int m_controller;
 
     public bool Moveable = false;
@@ -22,6 +21,9 @@ public class CharacterMovement : MonoBehaviour {
     private float facingAngle;
     private PlayerInput playerInput;
     private CharacterStateController stateController;
+    private float actualMaxSpeed;
+    private Vector2 leftStickVector;
+    private Vector2 rightStickVector;
 
 	// Use this for initialization
 	void Start () {
@@ -33,18 +35,35 @@ public class CharacterMovement : MonoBehaviour {
     {
         if( Moveable )
         {
-            //rigidbody.velocity = new Vector3( playerInput.LeftJoystickX, 0f, playerInput.LeftJoystickY ).PerspectiveAdjusted() * m_movementSpeed;
-            rigidbody2D.velocity = new Vector2( playerInput.LeftJoystickX, playerInput.LeftJoystickY ) * m_movementSpeed;
+           if( playerInput.LeftJoystickIsNull )
+           {
+               if( rigidbody2D.velocity != Vector2.zero )
+               {
+                   float decayScale = Mathf.Pow( rigidbody2D.velocity.magnitude, movementDecay );
+                   rigidbody2D.velocity = rigidbody2D.velocity / rigidbody2D.velocity.magnitude * decayScale;
+                   if( rigidbody2D.velocity.magnitude <= velocityZeroThreshold )
+                   {
+                       rigidbody2D.velocity = Vector2.zero;
+                   } 
+               }
+           }
+           else
+           {
+               leftStickVector = new Vector2( playerInput.LeftJoystickX, playerInput.LeftJoystickY );
+               actualMaxSpeed = maxSpeed * leftStickVector.magnitude;
+               rigidbody2D.velocity += leftStickVector * acceleration;
+               if( rigidbody2D.velocity.magnitude > actualMaxSpeed )
+               {
+                   rigidbody2D.velocity = rigidbody2D.velocity / rigidbody2D.velocity.magnitude * actualMaxSpeed;
+               }
+           }
         }
-    }
-	
-	// Update is called once per frame
-	void Update () {
 
         if( Rotatable && !playerInput.RightJoystickIsNull )
         {
             facingAngle = Mathf.Atan2( playerInput.RightJoystickY, playerInput.RightJoystickX ) * Mathf.Rad2Deg;
         }
+
         if( facingAngle >= 0 && facingAngle < 180 )
         {
             RotationState = SpriteRotationState.Up;
@@ -53,7 +72,7 @@ public class CharacterMovement : MonoBehaviour {
         {
             RotationState = SpriteRotationState.Down;
         }
-	}
+    }
 
     public AngleInput GetRotationInput()
     {

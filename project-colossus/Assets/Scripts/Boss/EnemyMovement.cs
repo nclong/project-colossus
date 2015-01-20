@@ -33,24 +33,19 @@ public class EnemyMovement : MonoBehaviour {
             {
                 targetSet = false;
             }
-
-        }
-    }
-	// Update is called once per frame
-	void Update () {
-        GameObject target = attributes.GetAggroLeader();
-        if( target == null )
-        {
-            if( !targetSet )
+            GameObject target = attributes.GetAggroLeader();
+            if( target == null )
             {
-                targetDestination = new Vector2( Random.Range( leftLimit, rightLimit ), Random.Range( bottomLimit, topLimit ) );
-                targetSet = true; 
+                if( !targetSet )
+                {
+                    targetDestination = new Vector2( Random.Range( leftLimit, rightLimit ), Random.Range( bottomLimit, topLimit ) );
+                    targetSet = true;
+                }
+            }
+            else
+            {
+                targetDestination = target.transform.position;
             }
         }
-        else
-        {
-            targetDestination = target.transform.position;
-        }
-
-	}
+    }
 }

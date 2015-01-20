@@ -9,7 +9,7 @@ public class GameStateManager : MonoBehaviour{
     public Text WinLabel;
     public Text LostLabel;
 
-    public void Update()
+    public void FixedUpdate()
     {
         if( playersDead == 4 ) { playerLose = true; }
         if( playerWin )

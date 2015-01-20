@@ -12,7 +12,7 @@ public static class Constants {
 
     public static bool IsLessThanMinusEpsilon( this float x, float target, float epsilon)
     {
-        return x < ( target - epsilon );
+        return Mathf.Abs(x - target) < Mathf.Abs(epsilon - target) && x <= target;
     }
 
     public static bool IsGreaterThanPlusEpsilon( this float x, float target, float epsilon)
@@ -56,5 +56,15 @@ public static class Constants {
     public static Vector2 In2D( this Vector3 u )
     {
         return new Vector2( u.x, u.y );
+    }
+    
+    public static Vector2 ToVector2( this float angle )
+    {
+        return new Vector2( Mathf.Cos(angle), Mathf.Sin(angle) ).normalized;
+    }
+
+    public static float ToAngle( this Vector2 u )
+    {
+        return Mathf.Atan2( u.y, u.x );
     }
 }

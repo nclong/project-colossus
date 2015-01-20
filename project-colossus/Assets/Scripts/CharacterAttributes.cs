@@ -20,7 +20,7 @@ public class CharacterAttributes : MonoBehaviour {
         resourceLabel.text = "Mana: " + CurrentResource.ToString() + " / " + MaxResource.ToString();
 	}
 
-    void Update()
+    void FixedUpdate()
     {
         healthLabel.text = "Health: " + CurrentHealth.ToString() + " / " + MaxHealth.ToString();
         resourceLabel.text = "Mana: " + CurrentResource.ToString() + " / " + MaxResource.ToString();

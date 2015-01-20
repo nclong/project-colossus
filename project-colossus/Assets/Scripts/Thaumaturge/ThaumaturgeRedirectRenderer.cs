@@ -25,7 +25,7 @@ public class ThaumaturgeRedirectRenderer : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if( lineRenderer.enabled )
         {
             vertexCount = (int)( source2Dest.magnitude / kinkLength );

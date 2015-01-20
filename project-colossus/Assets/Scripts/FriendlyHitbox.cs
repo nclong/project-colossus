@@ -10,7 +10,7 @@ public class FriendlyHitbox : MonoBehaviour {
 	}
 	
 	// Update is called once per frameS
-	void Update () {
+	void FixedUpdate () {
 	
 	}
 }

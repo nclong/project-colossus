@@ -23,7 +23,7 @@ public class CursorManager : MonoBehaviour {
         yInput = angleInput.Sin;
         if( angleInput.FromInput )
         {
-            transform.localPosition = new Vector3( angleInput.Cos, angleInput.Sin, transform.localPosition.z).PerspectiveAdjusted() * cursorDistance; 
+            transform.localPosition = new Vector3( angleInput.Cos, angleInput.Sin, transform.localPosition.z) * cursorDistance; 
         }
 	}
 }
