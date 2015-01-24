@@ -10,8 +10,8 @@ public class ThaumaturgeRedirect : PrimaryAbility {
     private CharacterMovement characterMovement;
     private ThaumaturgeRedirectRenderer redirectRenderer;
     private LineRenderer lineRenderer;
-    private float tickLength;
-    private float tickTimer;
+    private int tickLength;
+    private int tickTimer;
     private bool tick;
     private RaycastHit hit;
     private AngleInput angleInput;
@@ -37,17 +37,16 @@ public class ThaumaturgeRedirect : PrimaryAbility {
         }
         if( state == AbilityState.Active) 
         {
-            tickTimer += Time.deltaTime;
-            if( tickTimer >= tickLength )
+            tickTimer++;
+            if( tickTimer % tickLength == 0 )
             {
                 tick = true;
-                tickTimer = tickTimer - tickLength;
                 characterAttributes.ModifyResource( -1 );
-                tickTimer = 0f;
             }
             else
             {
                 tick = false;
+				tickTimer = 0;
             }
 
             if( characterAttributes.CurrentResource > 0 )

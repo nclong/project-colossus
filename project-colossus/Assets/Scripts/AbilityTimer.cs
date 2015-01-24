@@ -3,13 +3,13 @@ using System.Collections;
 
 public class AbilityTimer {
     public AbilityState State { get; private set; }
-    private float currentTimer;
-    private float timerMax;
-    private float startupTime;
-    private float activeTime;
-    private float cooldownTime;
+	public int currentTimer { get; private set; }
+    private int timerMax;
+    private int startupTime;
+    private int activeTime;
+    private int cooldownTime;
 
-    public AbilityTimer( float startTimeIn, float activeTimeIn, float cooldownTimeIn )
+    public AbilityTimer( int startTimeIn, int activeTimeIn, int cooldownTimeIn )
     {
         startupTime = startTimeIn;
         activeTime = activeTimeIn;
@@ -21,7 +21,7 @@ public class AbilityTimer {
 	public void Update () {
         if( State != AbilityState.Inactive && State != AbilityState.Null )
         {
-            currentTimer += Time.deltaTime;
+			currentTimer++;
             if( currentTimer <= startupTime )
             {
                 State = AbilityState.Startup;
@@ -40,7 +40,7 @@ public class AbilityTimer {
     public void Start()
     {
         State = AbilityState.Startup;
-        currentTimer = 0.0f;
+        currentTimer = 0;
     }
 
     public bool IsOver

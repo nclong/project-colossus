@@ -5,9 +5,9 @@ public class PugilistPush : MonoBehaviour, IAbility
 {
 
     public int m_controller;
-    public float m_startupTime;
-    public float m_activeTime;
-    public float m_cooldownTime;
+    public int m_startupTime;
+    public int m_activeTime;
+    public int m_cooldownTime;
 
     public float force;
     public float radius;

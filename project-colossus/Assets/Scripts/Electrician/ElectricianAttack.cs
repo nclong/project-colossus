@@ -9,8 +9,8 @@ public class ElectricianAttack : PrimaryAbility {
     public GameObject parentProjectile;
 
     private CharacterMovement characterMovement;
-    private float tickLength;
-    private float tickTimer = 0;
+    private int tickLength;
+    private int tickTimer = 0;
     private AngleInput angleInput;
     private PlayerInput playerInput;
 	// Use this for initialization
@@ -33,8 +33,8 @@ public class ElectricianAttack : PrimaryAbility {
 
         if( state == AbilityState.Active )
         {
-            tickTimer += Time.deltaTime;
-            if( tickTimer >= tickLength )
+			tickTimer++;
+            if( tickTimer % tickLength == 0 )
             {
                 tickTimer = tickTimer - tickLength;
                 GameObject projObj = (GameObject)Instantiate(parentProjectile,  transform.position, transform.rotation );
@@ -42,11 +42,11 @@ public class ElectricianAttack : PrimaryAbility {
                 angleInput = characterMovement.GetRotationInput();
                 proj.SetTargetByAngle_Deg( angleInput.Angle + Random.Range( -spread, spread ) );
                 proj.Launch();
-                tickTimer = 0f;
             }
 
             if( playerInput.PrimaryAbility.IsWithin(0.0f, InputManager.GeneralEpsilon))
             {
+				tickTimer = 0;
                 AbilityEnd();
             }
         }

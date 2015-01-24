@@ -6,14 +6,14 @@ public class PugilistJump : MonoBehaviour, IAbility {
     [Range(0.0f, 3.0f)]
     public int m_controller;
     public Button m_button;
-    public float m_startupTime;
-    public float m_activeTime;
-    public float m_cooldownTime;
+    public int m_startupTime;
+    public int m_activeTime;
+    public int m_cooldownTime;
     public float m_jumpDistance;
     public int cost;
 
 
-    private float activeTimer;
+    private int activeTimer;
     private AbilityTimer timer;
     public AbilityState state { get; set; }
     private Vector3 target;
@@ -46,11 +46,11 @@ public class PugilistJump : MonoBehaviour, IAbility {
             case AbilityState.Startup:
                 break;
             case AbilityState.Active:
-                activeTimer += Time.deltaTime;
-                if( activeTimer < m_activeTime )
+				activeTimer++;
+                if( activeTimer <= m_activeTime )
                 {
                     transform.position = Vector3.Lerp( start, target, activeTimer / m_activeTime );
-                    transform.localScale = Vector3.Lerp( startScale, targetScale, -Mathf.Abs( ( activeTimer - m_activeTime / 2 ) / ( m_activeTime / 2 ) ) + 1 ); 
+                    transform.localScale = Vector3.Lerp( startScale, targetScale, -Mathf.Abs( ( (float)(activeTimer - m_activeTime) / 2f ) / ( (float)m_activeTime / 2f ) ) + 1 ); 
                 }
                 break;
             case AbilityState.Cooldown:
@@ -77,7 +77,7 @@ public class PugilistJump : MonoBehaviour, IAbility {
         target = transform.position + (new Vector3( angle.Cos, angle.Sin, transform.position.z).normalized) * m_jumpDistance;
         startScale = transform.localScale;
         targetScale = transform.localScale * 1.5f;
-        activeTimer = 0.0f;
+        activeTimer = 0;
         timer.Start();
         characterAttributes.ModifyResource( -cost );
         collider2D.isTrigger = true;

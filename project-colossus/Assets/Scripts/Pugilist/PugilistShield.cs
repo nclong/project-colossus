@@ -5,13 +5,13 @@ using System;
 public class PugilistShield : MonoBehaviour, IAbility {
     [Range( 0.0f, 3.0f )]
     public int m_controller;
-    public float m_startupTime;
-    public float m_activeTime;
-    public float m_cooldownTime;
+    public int m_startupTime;
+    public int m_activeTime;
+    public int m_cooldownTime;
     public int cost;
     public GameObject shieldObject;
 
-    private float activeTimer;
+    private int activeTimer;
     private AbilityTimer timer;
     public AbilityState state { get; set; }
     private CharacterStateController stateController;
@@ -19,8 +19,8 @@ public class PugilistShield : MonoBehaviour, IAbility {
     private CharacterAttributes characterAttributes;
     private PlayerInput playerInput;
     public int button;
-    private float tickLength;
-    private float tickTimer;
+    private int tickLength;
+    private int tickTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -43,15 +43,14 @@ public class PugilistShield : MonoBehaviour, IAbility {
                 break;
             case AbilityState.Active:
                 collider.enabled = false;
-                activeTimer += Time.deltaTime;
-                tickTimer += Time.deltaTime;
-                if ( tickTimer >= tickLength )
+				tickTimer++;
+                if ( tickTimer % tickLength == 0 )
                 {
                     characterAttributes.ModifyResource( -1 );
-                    tickTimer = tickTimer - tickLength;
                 }
                 if( !playerInput.Abilities[button] || characterAttributes.CurrentResource <= 0)
                 {
+					tickTimer = 0;
                     AbilityEnd();
                 }
                 break;

@@ -10,8 +10,8 @@ public class ApothecaryTempHeal : PrimaryAbility
     private CharacterAttributes characterAttributes;
     private CharacterMovement characterMovement;
     private LineRenderer lineRenderer;
-    private float tickLength;
-    private float tickTimer;
+    private int tickLength;
+    private int tickTimer;
     private bool tick;
     private RaycastHit hit;
     private AngleInput angleInput;
@@ -38,12 +38,11 @@ public class ApothecaryTempHeal : PrimaryAbility
         }
         if( state == AbilityState.Active )
         {
-            tickTimer += Time.deltaTime;
-            if( tickTimer >= tickLength )
+			tickTimer++;
+            if( tickTimer % tickLength == 0 )
             {
                 tick = true;
                 tickTimer = tickTimer - tickLength;
-                tickTimer = 0f;
             }
             else
             {
@@ -67,6 +66,7 @@ public class ApothecaryTempHeal : PrimaryAbility
     private void FindAndSetTarget( Vector3 source )
     {
         angleInput = characterMovement.GetRotationInput();
+		//Need to change to 2D
         if( Physics.Raycast( source, new Vector3( angleInput.Cos, 0f, angleInput.Sin ), out hit, 200 ) )
         {
             GameObject hitObject = hit.collider.gameObject;

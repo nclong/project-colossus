@@ -10,8 +10,8 @@ public class PugilistCharge : SecondaryAbility {
     private CharacterMovement characterMovement;
     private CharacterAttributes characterAttributes;
     private PlayerInput playerInput;
-    private float tickLength;
-    private float tickTimer;
+    private int framesToTick;
+	private int framesCharging = 0;
     bool startedUpdating = false;
 
 	// Use this for initialization
@@ -20,7 +20,6 @@ public class PugilistCharge : SecondaryAbility {
         characterAttributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
         state = AbilityState.Inactive;
         playerInput = InputManager.Players[m_controller];
-        tickLength = 1 / (float)chargeAmount;
 	}
 	
 	// Update is called once per frame
@@ -33,22 +32,24 @@ public class PugilistCharge : SecondaryAbility {
             case AbilityState.Active:
                 if( !startedUpdating )
                 {
-                    tickTimer = 0f;
                     characterMovement.Moveable = false;
                     startedUpdating = true;
+					framesCharging = 0;
                 }
-
-                tickTimer += Time.deltaTime;
-                if ( tickTimer >= tickLength )
+				else
+				{
+					++framesCharging;
+				}
+                if ( framesCharging % framesToTick == 0 )
                 {
                     characterAttributes.ModifyResource( 1 );
-                    tickTimer = tickTimer - tickLength;
                 }
                 if( playerInput.PrimaryAbility.IsWithin(0.0f, InputManager.GeneralEpsilon ))
                 {
                     characterMovement.Moveable = true;
                     characterMovement.Rotatable = true;
                     startedUpdating = false;
+					framesCharging = 0;
                     AbilityEnd();
                 }
                 break;

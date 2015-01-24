@@ -8,7 +8,7 @@ public class PrimaryAbility : MonoBehaviour
     public void AbilityStart() 
     { 
         state = AbilityState.Startup;
-        timer.Start(); 
+        timer.Start();
     }
     public void AbilityEnd() 
     { 
