@@ -5,12 +5,11 @@ public class PugilistCharge : SecondaryAbility {
 
     [Range(0.0f, 3.0f)]
     public int m_controller;
-    public int chargeAmount;
+    public int framesToTick;
 
     private CharacterMovement characterMovement;
     private CharacterAttributes characterAttributes;
     private PlayerInput playerInput;
-    private int framesToTick;
 	private int framesCharging = 0;
     bool startedUpdating = false;
 

@@ -47,10 +47,10 @@ public class ThaumaturgeDark : MonoBehaviour, IAbility, IThaumaturgeAbility
                 {
                     if( runeFull )
                     {
-                        if( darkbolt.state == AbilityState.Inactive || darkbolt.state == AbilityState.Null )
-                        {
-                            darkbolt.AbilityStart();
-                        }
+                        //if( darkbolt.state == AbilityState.Inactive || darkbolt.state == AbilityState.Null )
+                        //{
+                        //    darkbolt.AbilityStart();
+                        //}
                     }
                     else
                     {

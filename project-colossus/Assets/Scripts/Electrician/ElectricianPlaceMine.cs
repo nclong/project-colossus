@@ -11,9 +11,9 @@ public class ElectricianPlaceMine : MonoBehaviour, IAbility {
 
     public int m_controller;
     public int m_button;
-    public float m_startupTime;
-    public float m_activeTime;
-    public float m_cooldownTime;
+    public int m_startupTime;
+    public int m_activeTime;
+    public int m_cooldownTime;
 
     private CharacterMovement char_movement;
     private CharacterAttributes char_attributes;

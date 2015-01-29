@@ -8,7 +8,7 @@ public class PugilistShield : MonoBehaviour, IAbility {
     public int m_startupTime;
     public int m_activeTime;
     public int m_cooldownTime;
-    public int cost;
+    public int framesToTick;
     public GameObject shieldObject;
 
     private int activeTimer;
@@ -30,8 +30,6 @@ public class PugilistShield : MonoBehaviour, IAbility {
         characterAttributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
         state = AbilityState.Inactive;
         playerInput = InputManager.Players[m_controller];
-
-        tickLength = 1f / (float)cost;
 	}
 	
 	// Update is called once per frame
@@ -44,7 +42,7 @@ public class PugilistShield : MonoBehaviour, IAbility {
             case AbilityState.Active:
                 collider.enabled = false;
 				tickTimer++;
-                if ( tickTimer % tickLength == 0 )
+                if ( tickTimer % framesToTick == 0 )
                 {
                     characterAttributes.ModifyResource( -1 );
                 }
@@ -68,7 +66,7 @@ public class PugilistShield : MonoBehaviour, IAbility {
 
     public void AbilityStart()
     {
-        tickTimer = 0f;
+        tickTimer = 0;
         state = AbilityState.Active;
         characterMovement.Moveable = false;
         shieldObject.SetActive( true );

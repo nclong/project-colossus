@@ -4,7 +4,7 @@ using System.Collections;
 public class ApothecaryTempHeal : PrimaryAbility
 {
 
-    public int healRate;
+    public int framesToTick;
     public int controller;
 
     private CharacterAttributes characterAttributes;
@@ -24,7 +24,6 @@ public class ApothecaryTempHeal : PrimaryAbility
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
         lineRenderer = (LineRenderer)GetComponent<LineRenderer>();
         playerInput = InputManager.Players[controller];
-        tickLength = 1f / (float)healRate;
     }
 
     // Update is called once per frame
@@ -39,7 +38,7 @@ public class ApothecaryTempHeal : PrimaryAbility
         if( state == AbilityState.Active )
         {
 			tickTimer++;
-            if( tickTimer % tickLength == 0 )
+            if( tickTimer % framesToTick == 0 )
             {
                 tick = true;
                 tickTimer = tickTimer - tickLength;

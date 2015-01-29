@@ -3,14 +3,13 @@ using System.Collections;
 
 public class ThaumaturgeRedirect : PrimaryAbility {
 
-    public int chargePerSecond;
+    public int framesToTick;
     public int controller;
 
     private CharacterAttributes characterAttributes;
     private CharacterMovement characterMovement;
     private ThaumaturgeRedirectRenderer redirectRenderer;
     private LineRenderer lineRenderer;
-    private int tickLength;
     private int tickTimer;
     private bool tick;
     private RaycastHit hit;
@@ -24,7 +23,6 @@ public class ThaumaturgeRedirect : PrimaryAbility {
         redirectRenderer = (ThaumaturgeRedirectRenderer)GetComponent<ThaumaturgeRedirectRenderer>();
         lineRenderer = (LineRenderer)GetComponent<LineRenderer>();
         playerInput = InputManager.Players[controller];
-        tickLength = 1f / (float)chargePerSecond;
 	}
 	
 	// Update is called once per frame
@@ -38,7 +36,7 @@ public class ThaumaturgeRedirect : PrimaryAbility {
         if( state == AbilityState.Active) 
         {
             tickTimer++;
-            if( tickTimer % tickLength == 0 )
+            if( tickTimer % framesToTick == 0 )
             {
                 tick = true;
                 characterAttributes.ModifyResource( -1 );

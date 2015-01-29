@@ -4,7 +4,7 @@ using System.Collections;
 public class ElectricianAttack : PrimaryAbility {
 
     public int controller;
-    public int firingRate;
+    public int framesBetweenShots;
     public float spread;
     public GameObject parentProjectile;
 
@@ -18,7 +18,6 @@ public class ElectricianAttack : PrimaryAbility {
         timer = new AbilityTimer( 0, 0, 0 );
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
         playerInput = InputManager.Players[controller];
-        tickLength = 1f / (float)firingRate;
 	}
 	
 	// Update is called once per frame
@@ -27,14 +26,14 @@ public class ElectricianAttack : PrimaryAbility {
         characterMovement.Rotatable = true;
         if( state == AbilityState.Startup )
         {
-            tickTimer = 0f;
+            tickTimer = 0;
             state = AbilityState.Active;
         }
 
         if( state == AbilityState.Active )
         {
 			tickTimer++;
-            if( tickTimer % tickLength == 0 )
+			if( tickTimer % framesBetweenShots == 0 )
             {
                 tickTimer = tickTimer - tickLength;
                 GameObject projObj = (GameObject)Instantiate(parentProjectile,  transform.position, transform.rotation );
