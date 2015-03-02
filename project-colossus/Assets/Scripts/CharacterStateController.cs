@@ -33,11 +33,13 @@ public class CharacterStateController : MonoBehaviour {
                 abilityList.Add( (IAbility)behaviour );
             }
         }
-
         foreach( IAbility ability in abilityList )
         {
+			//GetButton only returns 0 for some reason;
             abilities[ability.GetButton()] = ability;
+
         }
+
 
         characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
         attributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
@@ -55,6 +57,11 @@ public class CharacterStateController : MonoBehaviour {
         characterMovement.Rotatable = false;
         if( !playerInput.LeftJoystickIsNull ) { AddState( CharacterState.Moving ); }
         if( !playerInput.RightJoystickIsNull ) { AddState( CharacterState.Rotating ); }
+
+		//abilities[1].state is null;
+		//Debug.Log (abilities [0]);
+		//Debug.Log (abilities [1]);
+
         if( playerInput.Abilities[0] && (abilities[0].state == AbilityState.Inactive || abilities[0].state == AbilityState.Null))
         {
             AddState( CharacterState.Ability1 );
