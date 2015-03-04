@@ -62,6 +62,7 @@ public class CharacterMovement : MonoBehaviour {
            }
         }
 
+        #region Rotation Code
         if( Rotatable && !playerInput.RightJoystickIsNull )
         {
             float stickAngle = Mathf.Atan2( playerInput.RightJoystickY, playerInput.RightJoystickX ) * Mathf.Rad2Deg;
@@ -160,6 +161,7 @@ public class CharacterMovement : MonoBehaviour {
             actualMaxRotationSpeed = 0f;
             rotationSpeed = 0f;
         }
+        #endregion
 
         if( facingAngle >= 0 && facingAngle < 180 )
         {

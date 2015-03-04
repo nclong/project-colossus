@@ -21,14 +21,12 @@ public class PugilistReflect : MonoBehaviour, IAbility
     private CharacterMovement characterMovement;
     private CharacterAttributes characterAttributes;
     private PlayerInput playerInput;
-    public int button;
+    public int button = 3;
     private SpriteRenderer sr;
 
     /* Other variables to consider?
      * speed of projectile
      */
-
-
 
     // Use this for initialization
     void Start()

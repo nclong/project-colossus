@@ -51,7 +51,7 @@ public class CharacterStateController : MonoBehaviour {
 	void FixedUpdate () {
 		if (characterClass == "electrician") {
 						EndAbilities ();
-				}
+		}
 		primary = HasState (CharacterState.Primary);
         characterMovement.Moveable = false;
         characterMovement.Rotatable = false;
@@ -78,6 +78,7 @@ public class CharacterStateController : MonoBehaviour {
         {
             AddState( CharacterState.Ability4 );
         }
+
         if( playerInput.PrimaryAbility > InputManager.GeneralEpsilon )
         {
             AddState( CharacterState.Secondary );
@@ -167,10 +168,11 @@ public class CharacterStateController : MonoBehaviour {
             possibleReflect = null;
         }
 
-        reflect = possibleReflect != null 
+        reflect = 
+        possibleReflect != null 
             ? possibleReflect.state == AbilityState.Active 
             : false;
-
+            
         if( reflect )
         {
             Projectile proj = (Projectile)collider.gameObject.GetComponent<Projectile>();
