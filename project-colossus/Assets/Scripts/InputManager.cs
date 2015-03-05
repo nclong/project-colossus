@@ -22,12 +22,12 @@ public class InputManager : MonoBehaviour {
             Players[i].LeftJoystickY = Input.GetAxis( "LeftJoystickY" + i.ToString() );
             Players[i].RightJoystickX = Input.GetAxis( "RightJoystickX" + i.ToString() );
             Players[i].RightJoystickY = Input.GetAxis( "RightJoystickY" + i.ToString() );
-			Players[i].Abilities[0] = A1[i] = Input.GetButton( A1str[i] );
-			Players[i].Abilities[1] = A2[i] = Input.GetButton( A2str[i] );
-			Players[i].Abilities[2] = A3[i] = Input.GetButton( A3str[i] );
-			Players[i].Abilities[3] = A4[i] = Input.GetButton( A4str[i] );
-			Players[i].PrimaryAbility = rightTrigger[i] =  Input.GetAxis( "Primary" + i.ToString() );
-            Players[i].SecondaryAbility = leftTrigger[i] = Input.GetAxis( "Secondary" + i.ToString() );
+			Players[i].Abilities[0] = Input.GetButton( "AbilityA" + i.ToString() );
+			Players[i].Abilities[1] = Input.GetButton( "AbilityX" + i.ToString() );
+			Players[i].Abilities[2] = Input.GetButton( "AbilityB" + i.ToString() );
+			Players[i].Abilities[3] = Input.GetButton( "AbilityY" + i.ToString() );
+			Players[i].PrimaryAbility = Input.GetAxis( "Primary" + i.ToString() );
+            Players[i].SecondaryAbility = Input.GetAxis( "Secondary" + i.ToString() );
         }
 	}
 }

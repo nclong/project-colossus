@@ -98,9 +98,9 @@ public class EnemyAttributes : MonoBehaviour {
         {
             CurrentHealth -= hitbox.damage;
             
-            if( collider.gameObject.tag == "Projectile")
+            if( GetComponent<Collider>().gameObject.tag == "Projectile")
             {
-                Destroy( collider.gameObject );
+                Destroy( GetComponent<Collider>().gameObject );
             }
         }
     }

@@ -40,13 +40,13 @@ public class CharacterMovement : MonoBehaviour {
         {
            if( playerInput.LeftJoystickIsNull )
            {
-               if( rigidbody2D.velocity != Vector2.zero )
+               if( GetComponent<Rigidbody2D>().velocity != Vector2.zero )
                {
-                   float decayScale = Mathf.Pow( rigidbody2D.velocity.magnitude, movementDecay );
-                   rigidbody2D.velocity = rigidbody2D.velocity / rigidbody2D.velocity.magnitude * decayScale;
-                   if( rigidbody2D.velocity.magnitude <= velocityZeroThreshold )
+                   float decayScale = Mathf.Pow( GetComponent<Rigidbody2D>().velocity.magnitude, movementDecay );
+                   GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity / GetComponent<Rigidbody2D>().velocity.magnitude * decayScale;
+                   if( GetComponent<Rigidbody2D>().velocity.magnitude <= velocityZeroThreshold )
                    {
-                       rigidbody2D.velocity = Vector2.zero;
+                       GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                    } 
                }
            }
@@ -54,10 +54,10 @@ public class CharacterMovement : MonoBehaviour {
            {
                Vector2 leftStickVector = new Vector2( playerInput.LeftJoystickX, playerInput.LeftJoystickY );
                actualMaxSpeed = maxSpeed * leftStickVector.magnitude;
-               rigidbody2D.velocity += leftStickVector * acceleration;
-               if( rigidbody2D.velocity.magnitude > actualMaxSpeed )
+               GetComponent<Rigidbody2D>().velocity += leftStickVector * acceleration;
+               if( GetComponent<Rigidbody2D>().velocity.magnitude > actualMaxSpeed )
                {
-                   rigidbody2D.velocity = rigidbody2D.velocity / rigidbody2D.velocity.magnitude * actualMaxSpeed;
+                   GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity / GetComponent<Rigidbody2D>().velocity.magnitude * actualMaxSpeed;
                }
            }
         }

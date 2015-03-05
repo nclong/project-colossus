@@ -40,7 +40,7 @@ public class PugilistShield : MonoBehaviour, IAbility {
             case AbilityState.Startup:
                 break;
             case AbilityState.Active:
-                collider.enabled = false;
+                GetComponent<Collider>().enabled = false;
 				tickTimer++;
                 if ( tickTimer % framesToTick == 0 )
                 {
@@ -70,14 +70,14 @@ public class PugilistShield : MonoBehaviour, IAbility {
         state = AbilityState.Active;
         characterMovement.Moveable = false;
         shieldObject.SetActive( true );
-        rigidbody.velocity = Vector3.zero;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     public void AbilityEnd()
     {
         if( !playerInput.Abilities[button] )
         {
-            collider.enabled = true;
+            GetComponent<Collider>().enabled = true;
             stateController.EndAbilities();
             state = AbilityState.Inactive;
             characterMovement.Moveable = true;

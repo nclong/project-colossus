@@ -80,12 +80,12 @@ public class PugilistJump : MonoBehaviour, IAbility {
         activeTimer = 0;
         timer.Start();
         characterAttributes.ModifyResource( -cost );
-        collider2D.isTrigger = true;
+        GetComponent<Collider2D>().isTrigger = true;
     }
 
     public void AbilityEnd()
     {
-        collider2D.isTrigger = false;
+        GetComponent<Collider2D>().isTrigger = false;
         transform.localScale = startScale;
         if( !playerInput.Abilities[button] )
         {            

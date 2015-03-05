@@ -182,7 +182,7 @@ public class CharacterStateController : MonoBehaviour {
                 FriendlyHitbox newBox = (FriendlyHitbox)collider.gameObject.AddComponent<FriendlyHitbox>();
                 newBox.damage = oldBox.damage * 2;
                 oldBox.enabled = false;
-                collider.gameObject.rigidbody.velocity *= -2;
+                collider.gameObject.GetComponent<Rigidbody>().velocity *= -2;
             } 
         }
         else

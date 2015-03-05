@@ -12,7 +12,7 @@ public class DarkRune : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        spriteRenderer = (SpriteRenderer)renderer;
+        spriteRenderer = (SpriteRenderer)GetComponent<Renderer>();
         currentCharge = 0;
 	}
 	

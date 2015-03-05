@@ -13,7 +13,7 @@ public class ImpulseTest : MonoBehaviour {
 	
         if( Input.GetKey(KeyCode.T))
         {
-            rigidbody.AddForce( 1000f, 1000f, 1000f, ForceMode.Impulse );
+            GetComponent<Rigidbody>().AddForce( 1000f, 1000f, 1000f, ForceMode.Impulse );
         }
 	}
 }

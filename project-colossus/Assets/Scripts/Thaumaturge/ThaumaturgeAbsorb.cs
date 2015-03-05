@@ -13,7 +13,7 @@ public class ThaumaturgeAbsorb : SecondaryAbility {
 	void Start () {
 		playerInput = InputManager.Players[controller];
 		characterMovement = (CharacterMovement)GetComponent<CharacterMovement>();
-		spriteRenderer = (SpriteRenderer)renderer;
+		spriteRenderer = (SpriteRenderer)GetComponent<Renderer>();
 	}
 	
 	// Update is called once per frame

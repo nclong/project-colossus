@@ -37,7 +37,7 @@ public class PugilistReflect : MonoBehaviour, IAbility
         characterAttributes = (CharacterAttributes)GetComponent<CharacterAttributes>();
         state = AbilityState.Inactive;
         playerInput = InputManager.Players[m_controller];
-        sr = (SpriteRenderer)renderer;
+        sr = (SpriteRenderer)GetComponent<Renderer>();
     }
 
     // Update is called once per frame

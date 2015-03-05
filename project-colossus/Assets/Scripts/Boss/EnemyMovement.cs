@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour {
             float distance = Vector2.Distance( transform.position, targetDestination );
             if( targetSet && distance > distanceFromGoal )
             {
-                rigidbody2D.velocity = ( targetDestination - transform.position.In2D() ).normalized * speed;
+                GetComponent<Rigidbody2D>().velocity = ( targetDestination - transform.position.In2D() ).normalized * speed;
             }
 
             if( distance <= distanceFromGoal )

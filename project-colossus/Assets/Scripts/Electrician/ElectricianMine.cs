@@ -26,7 +26,7 @@ public class ElectricianMine : MonoBehaviour {
         {
             //Enemy stepped on the mine, explode in 1 second
             MineExplode();
-            renderer.enabled = false;
+            GetComponent<Renderer>().enabled = false;
             DestroyMine();
         }
 
