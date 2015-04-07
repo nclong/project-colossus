@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\Electrician\ElectricianPlaceTurret.cs" />
     <Compile Include="Assets\Scripts\Electrician\ElectricianTower.cs" />
     <Compile Include="Assets\Scripts\Electrician\ElectricianTowerCharge.cs" />
+    <Compile Include="Assets\Scripts\Electrician\ElectricianTowerResourceCounter.cs" />
     <Compile Include="Assets\Scripts\Enums\AbilityState.cs" />
     <Compile Include="Assets\Scripts\Enums\Button.cs" />
     <Compile Include="Assets\Scripts\Enums\CharacterState.cs" />
